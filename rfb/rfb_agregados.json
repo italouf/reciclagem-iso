@@ -1,0 +1,284 @@
+{
+  "fonte": "Base dos Dados / br_me_cnpj (Receita Federal) via BigQuery",
+  "particao_dados": "2026-01-11",
+  "extraido_em": "2026-10-09T14:19:06",
+  "cnaes_no_escopo": 19,
+  "escopo_cnaes": [
+    {
+      "codigo": "2221800",
+      "descricao": "Fabricação de laminados planos e tubulares de material plástico"
+    },
+    {
+      "codigo": "2222600",
+      "descricao": "Fabricação de embalagens de material plástico"
+    },
+    {
+      "codigo": "2223400",
+      "descricao": "Fabricação de tubos e acessórios de material plástico para uso na construção"
+    },
+    {
+      "codigo": "2229301",
+      "descricao": "Fabricação de artefatos de material plástico para uso pessoal e doméstico"
+    },
+    {
+      "codigo": "2229302",
+      "descricao": "Fabricação de artefatos de material plástico para usos industriais"
+    },
+    {
+      "codigo": "2229303",
+      "descricao": "Fabricação de artefatos de material plástico para uso na construção, exceto tubos e acessórios"
+    },
+    {
+      "codigo": "2229399",
+      "descricao": "Fabricação de artefatos de material plástico para outros usos não especificados anteriormente"
+    },
+    {
+      "codigo": "3314722",
+      "descricao": "Manutenção e reparação de máquinas e aparelhos para a indústria do plástico"
+    },
+    {
+      "codigo": "3811400",
+      "descricao": "Coleta de resíduos não perigosos"
+    },
+    {
+      "codigo": "3812200",
+      "descricao": "Coleta de resíduos perigosos"
+    },
+    {
+      "codigo": "3821100",
+      "descricao": "Tratamento e disposição de resíduos não perigosos"
+    },
+    {
+      "codigo": "3822000",
+      "descricao": "Tratamento e disposição de resíduos perigosos"
+    },
+    {
+      "codigo": "3831901",
+      "descricao": "Recuperação de sucatas de alumínio"
+    },
+    {
+      "codigo": "3831999",
+      "descricao": "Recuperação de materiais metálicos, exceto alumínio"
+    },
+    {
+      "codigo": "3832700",
+      "descricao": "Recuperação de materiais plásticos"
+    },
+    {
+      "codigo": "3839499",
+      "descricao": "Recuperação de materiais não especificados anteriormente"
+    },
+    {
+      "codigo": "4687701",
+      "descricao": "Comércio atacadista de resíduos de papel e papelão"
+    },
+    {
+      "codigo": "4687702",
+      "descricao": "Comércio atacadista de resíduos e sucatas não metálicos, exceto de papel e papelão"
+    },
+    {
+      "codigo": "4687703",
+      "descricao": "Comércio atacadista de resíduos e sucatas metálicos"
+    }
+  ],
+  "ba": {
+    "ativos_por_cnae_principal_ou_secundaria": 16204,
+    "ativos_cnae_principal_no_escopo": 3754,
+    "por_setor": {
+      "Outro CNAE (entrou por secundária)": 12354,
+      "Coleta de resíduos": 1129,
+      "Recuperação/tratamento (outros)": 961,
+      "Produção de plásticos/EPS": 781,
+      "Comércio de sucata": 576,
+      "Recuperação de plásticos": 335,
+      "Reparo de maq. plásticos": 68
+    },
+    "por_municipio_top10": {
+      "Salvador": 2068,
+      "Feira de Santana": 980,
+      "Vitória da Conquista": 527,
+      "Lauro de Freitas": 424,
+      "Camaçari": 414,
+      "Simões Filho": 377,
+      "Itabuna": 347,
+      "Alagoinhas": 286,
+      "Teixeira de Freitas": 253,
+      "Juazeiro": 232
+    },
+    "por_municipio_foco": {
+      "Feira de Santana": 980,
+      "Salvador": 2068,
+      "Simões Filho": 377,
+      "Itatim": 17,
+      "Santo Antônio de Jesus": 132,
+      "Vitória da Conquista": 527,
+      "Conceição do Jacuípe": 121
+    },
+    "nucleo_foco_por_municipio": {
+      "Feira de Santana": 324,
+      "Salvador": 719,
+      "Simões Filho": 137,
+      "Itatim": 9,
+      "Santo Antônio de Jesus": 41,
+      "Vitória da Conquista": 205,
+      "Conceição do Jacuípe": 40
+    },
+    "por_porte": {
+      "ME": 12538,
+      "EPP": 2036,
+      "DEMAIS": 1630
+    },
+    "capital_social_foco_R": 72529939055.82,
+    "situacao_cadastral": {
+      "ATIVA": 16204,
+      "BAIXADA": 7422,
+      "INAPTA": 4354,
+      "SUSPENSA": 91,
+      "NULA": 23
+    }
+  },
+  "nacional": {
+    "SP": 68047,
+    "RJ": 18029,
+    "ES": 6714,
+    "MG": 26557,
+    "BA": 15781,
+    "PE": 7840,
+    "AL": 2893,
+    "PB": 3793,
+    "RN": 4886,
+    "CE": 10606,
+    "PI": 4812,
+    "MA": 7683,
+    "PA": 8531,
+    "AP": 903,
+    "AM": 6964,
+    "RR": 1147,
+    "AC": 870,
+    "DF": 2984,
+    "GO": 10667,
+    "RO": 2445,
+    "TO": 2475,
+    "MT": 6499,
+    "MS": 3992,
+    "PR": 19057,
+    "SC": 13478,
+    "RS": 17241,
+    "EX": 245,
+    "SE": 1759
+  },
+  "nacional_total_ativos": 276898,
+  "participacao_ba_pct": 5.85,
+  "aberturas_ba_por_ano": {
+    "2010": {
+      "ativa": 450,
+      "baixada": 387,
+      "outras": 237
+    },
+    "2011": {
+      "ativa": 484,
+      "baixada": 302,
+      "outras": 227
+    },
+    "2012": {
+      "ativa": 441,
+      "baixada": 345,
+      "outras": 181
+    },
+    "2013": {
+      "ativa": 561,
+      "baixada": 430,
+      "outras": 221
+    },
+    "2014": {
+      "ativa": 452,
+      "baixada": 360,
+      "outras": 185
+    },
+    "2015": {
+      "ativa": 485,
+      "baixada": 308,
+      "outras": 215
+    },
+    "2016": {
+      "ativa": 536,
+      "baixada": 284,
+      "outras": 207
+    },
+    "2017": {
+      "ativa": 665,
+      "baixada": 363,
+      "outras": 264
+    },
+    "2018": {
+      "ativa": 670,
+      "baixada": 349,
+      "outras": 247
+    },
+    "2019": {
+      "ativa": 790,
+      "baixada": 360,
+      "outras": 223
+    },
+    "2020": {
+      "ativa": 931,
+      "baixada": 398,
+      "outras": 205
+    },
+    "2021": {
+      "ativa": 1330,
+      "baixada": 490,
+      "outras": 257
+    },
+    "2022": {
+      "ativa": 1183,
+      "baixada": 372,
+      "outras": 160
+    },
+    "2023": {
+      "ativa": 1248,
+      "baixada": 268,
+      "outras": 3
+    },
+    "2024": {
+      "ativa": 1349,
+      "baixada": 211,
+      "outras": 0
+    },
+    "2025": {
+      "ativa": 1666,
+      "baixada": 171,
+      "outras": 0
+    },
+    "2026": {
+      "ativa": 43,
+      "baixada": 0,
+      "outras": 0
+    }
+  },
+  "validacoes": {
+    "players_conhecidos_encontrados": [
+      "Knauf Isopor",
+      "Isoplast",
+      "Isobras (ISOBRAR)",
+      "Iso Conquista",
+      "Isobahia (ABS Poliestireno)"
+    ],
+    "recuperadores_plasticos_BA_ativos": 335,
+    "feira_nucleo": 324,
+    "nota_cobertura": "Escopo = 19 subclasses CNAE de plásticos, resíduos e sucata; estabelecimentos com CNAE secundário também entram, por isso ativos_total > núcleo. Dados: partição 11/01/2026 da RFB.",
+    "taxa_cobertura_mapeamento_manual": "5/5"
+  },
+  "achados": {
+    "recuperadores_plasticos_ativos_BA": 335,
+    "recuperadores_plasticos_Feira": 34,
+    "nucleo_Feira": 324,
+    "posicao_ba_nacional": 6,
+    "aberturas_cadeia_BA_2010_vs_2025": [
+      450,
+      1666
+    ],
+    "taxa_baixa_historica": 26.4,
+    "crescimento_aberturas_pct": 270.0
+  }
+}

@@ -1,0 +1,36 @@
+[14:15:37] [dry-run particao] 0.000 GB
+[14:15:41] [exec particao] 1 linhas em 3.6s (0.000 GB)
+[14:15:41] partição: 2026-01-11
+[14:15:41] [dry-run dir_cnae] 0.000 GB
+[14:15:44] [exec dir_cnae] 206 linhas em 2.3s (0.000 GB)
+[14:15:44] CNAEs candidatos: 19
+[14:15:56] [dry-run particao] 0.000 GB
+[14:15:58] [exec particao] 1 linhas em 2.3s (0.000 GB)
+[14:15:58] partição: 2026-01-11
+[14:15:58] [dry-run dir_cnae] 0.000 GB
+[14:16:03] [exec dir_cnae] 206 linhas em 4.2s (0.000 GB)
+[14:16:03] CNAEs candidatos: 19
+[14:16:03] [dry-run est_ba] 0.000 GB
+[14:16:08] [exec est_ba] 28094 linhas em 5.4s (0.000 GB)
+[14:16:09] [dry-run empresas] 0.000 GB
+[14:16:14] [exec empresas] 27379 linhas em 5.2s (0.000 GB)
+[14:16:15] [dry-run nacional] 0.000 GB
+[14:16:18] [exec nacional] 28 linhas em 3.4s (0.000 GB)
+[14:16:19] [dry-run aberturas] 0.000 GB
+[14:16:22] [exec aberturas] 68 linhas em 2.8s (0.000 GB)
+[14:16:47] [dry-run particao] 0.000 GB
+[14:16:49] [exec particao] 1 linhas em 2.3s (0.000 GB)
+[14:16:49] partição: 2026-01-11
+[14:16:50] [dry-run dir_cnae] 0.000 GB
+[14:16:52] [exec dir_cnae] 206 linhas em 2.6s (0.000 GB)
+[14:16:52] CNAEs candidatos: 19
+[14:16:53] [dry-run est_ba] 0.000 GB
+[14:16:55] [exec est_ba] 28094 linhas em 2.1s (0.000 GB)
+[14:16:56] [dry-run empresas] 0.000 GB
+[14:16:59] [exec empresas] 27379 linhas em 3.0s (0.000 GB)
+[14:16:59] [dry-run nacional] 0.000 GB
+[14:17:02] [exec nacional] 28 linhas em 2.7s (0.000 GB)
+[14:17:03] [dry-run aberturas] 0.000 GB
+[14:17:05] [exec aberturas] 68 linhas em 2.1s (0.000 GB)
+[14:17:06] RESUMO: {"ativos_BA": 16204, "por_setor": {"Outro": 12431, "Recuperação/Beneficiamento": 1231, "Coleta": 1185, "Produção de plásticos/EPS": 781, "Comércio de sucata": 576}, "foco_mun": {"Salvador": 2068, "Feira de Santana": 980}, "participacao_BA_%": 5.85, "players_mapeados": 3048}
+[14:17:06] OK — saidas em /root/hermes-docs/saida/pesquisa-isopor-bahia/rfb

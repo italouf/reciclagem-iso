@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>isopor-bahia — Painel de Pesquisa · Reciclagem de EPS</title>
+<style>
+:root{
+  --bg:#f8fafc; --card:#fff; --line:#e5e7eb; --ink:#111827; --muted:#6b7280;
+  --green-fill:#059669; --green-2:#10b981; --green-text:#047857;
+  --green-bg:rgba(16,185,129,.12); --green-soft:#ecfdf5; --green-line:#a7f3d0;
+  --red-text:#be123c; --amber:#b45309; --navy:#1f3864;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scrollbar-color:#cbd5e1 var(--bg)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:6px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+::-webkit-scrollbar-track{background:var(--bg)}
+::selection{background:#a7f3d0;color:#06281c}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55}
+a{color:var(--green-text);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--green-text);outline-offset:2px;border-radius:4px}
+/* ---------- topbar ---------- */
+.topbar{background:var(--card);border-bottom:1px solid var(--line);padding:0 20px;
+  min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:sticky;top:0;z-index:60;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding:8px 0}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--green-2)}
+.brand .sub{color:var(--muted);font-weight:400;font-size:13px}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.seg button{border:0;background:#fff;padding:6px 11px;font-size:12.5px;color:var(--muted);
+  cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:#f1f5f9;color:var(--ink)}
+.seg button.on{background:#047857;color:#fff;font-weight:600}
+.chip{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:12px;
+  padding:3px 9px;background:#f9fafb;white-space:nowrap}
+/* ---------- tabs ---------- */
+nav.tabs{background:var(--card);border-bottom:1px solid var(--line);padding:0 20px;
+  display:flex;gap:2px;overflow-x:auto;position:sticky;top:52px;z-index:55}
+nav.tabs button{border:0;background:none;padding:12px 13px;font-size:13.5px;color:var(--muted);
+  cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-weight:500}
+nav.tabs button:hover{color:var(--ink);background:#f8fafc}
+nav.tabs button.on{color:var(--green-text);border-bottom-color:var(--green-fill);font-weight:600}
+main{max-width:1180px;margin:0 auto;padding:28px 20px 72px}
+section{display:none}
+section.active{display:block}
+h2{font-size:16.5px;font-weight:700;margin:34px 0 12px;text-wrap:balance}
+h2:first-child{margin-top:0}
+h3{font-size:14.5px;font-weight:600;margin:20px 0 8px;text-wrap:balance}
+.lead,.memo{color:var(--muted);font-size:13.5px;margin:-4px 0 16px;max-width:72ch}
+.memo{color:#374151}
+.memo b{color:var(--ink)}
+/* ---------- KPI tiles ---------- */
+.grid{display:grid;gap:12px}
+.g5{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.g6{grid-template-columns:repeat(auto-fit,minmax(175px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.tile .num{font-size:25px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15}
+.tile .lbl{font-size:12.5px;color:var(--muted);margin-top:4px}
+.tile .act{font-size:12.5px;color:var(--green-text);font-weight:600;margin-top:8px}
+.tile .act.neu{color:#374151;font-weight:500}
+.tile .cmp{font-size:12px;margin-top:6px;color:var(--green-text);font-weight:600}
+.tile .src{font-size:12px;color:var(--muted);margin-top:6px}
+/* ---------- breakdown ---------- */
+.bd{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.bd h3{margin:0;padding:14px 16px 10px;font-size:13.5px;border-bottom:1px solid var(--line)}
+.bd .row{position:relative;display:flex;justify-content:space-between;gap:10px;
+  padding:8px 16px;font-size:13px;border-bottom:1px solid #f1f3f6}
+.bd .row:last-child{border-bottom:0}
+.bd .row:hover{background:#f8fafc}
+.bd .row .bar{position:absolute;left:0;top:0;bottom:0;background:var(--green-bg)}
+.bd .row .nm,.bd .row .vv{position:relative}
+.bd .row .vv{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.bd .row .nm{color:#374151;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bd .row .vv small{color:var(--muted);font-weight:400}
+/* ---------- tables ---------- */
+.tbl-wrap{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow-x:auto;padding:7px 9px}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th{background:#f9fafb;color:#374151;text-align:left;padding:9px 12px;font-weight:600;
+  font-size:12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid #f1f3f6;vertical-align:top}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#f8fafc}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600}
+.b-alta{background:#d1fae5;color:#065f46}.b-media{background:#fef3c7;color:#92400e}
+.b-baixa{background:#ffe4e6;color:#9f1239}.b-emerg{background:#ede9fe;color:#5b21b6}
+.tag{display:inline-block;background:var(--green-soft);border:1px solid var(--green-line);
+  color:#065f46;border-radius:5px;padding:0 6px;font-size:12px;margin:2px 3px 2px 0}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px;max-width:88ch}
+.callout{background:var(--green-soft);border:1px solid var(--green-line);border-radius:12px;
+  padding:14px 16px;font-size:13.5px;max-width:92ch}
+.callout b{color:#065f46}
+.warnbox{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:12px 15px;
+  font-size:12.5px;color:#78350f;margin-top:12px;max-width:92ch}
+ul{margin:6px 0 6px 20px;font-size:13.5px}
+li{margin-bottom:5px}
+/* ---------- chart ---------- */
+.chart{position:relative;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.chart svg{width:100%;height:auto;display:block}
+.chart .tt{position:absolute;pointer-events:none;background:#111827;color:#fff;font-size:12px;
+  padding:5px 9px;border-radius:5px;transform:translate(-50%,-115%);opacity:0;transition:opacity .12s;white-space:nowrap;z-index:5}
+.bar-grow{transform-origin:bottom;animation:grow .6s cubic-bezier(.16,1,.3,1) both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@media(prefers-reduced-motion:reduce){.bar-grow{animation:none}}
+/* ---------- timeline ---------- */
+.tl{border-left:2px solid var(--green-2);margin-left:6px;padding-left:20px}
+.tl-i{position:relative;margin-bottom:15px}
+.tl-i:before{content:"";position:absolute;left:-27px;top:4px;width:10px;height:10px;border-radius:50%;
+  background:#fff;border:2px solid var(--green-2)}
+.tl-y{font-weight:700;font-size:12.5px;color:var(--green-text)}
+.tl-t{font-size:13.5px;max-width:80ch}
+/* ---------- cadeia columns ---------- */
+.mapa{display:flex;gap:12px;align-items:flex-start}
+.col{flex:1;min-width:250px}
+.col h3{text-align:center;font-size:12.5px;background:var(--navy);color:#fff;padding:8px;
+  border-radius:8px 8px 0 0;font-weight:600}
+.col .list{border:1px solid var(--line);border-top:0;border-radius:0 0 8px 8px;background:#fff;padding:8px}
+.item{font-size:12.5px;padding:7px 8px;border-radius:6px;margin-bottom:6px;
+  background:#f9fafb;border:1px solid #eef1f5}
+.item b{color:var(--navy)}
+.item .why{color:#4b5563;font-size:12px;display:block;margin-top:2px}
+.arrowcol{display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+  color:var(--green-fill);font-weight:700;min-width:30px}
+/* ---------- swot ---------- */
+.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.swot>div{border-radius:12px;padding:14px 16px;font-size:13px;border:1px solid}
+.swot h3{font-size:13.5px;margin-bottom:6px}
+.s-for{background:var(--green-soft);border-color:var(--green-line)}.s-frac{background:#fffbeb;border-color:#fde68a}
+.s-oport{background:#eff6ff;border-color:#bfdbfe}.s-amea{background:#fff1f2;border-color:#fecdd3}
+/* ---------- insight rows (observação → interpretação → ação) ---------- */
+.ins{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:6px 8px}
+.ins .ir{display:grid;grid-template-columns:1.1fr 1.2fr 1fr;gap:0;border-bottom:1px solid #f1f3f6}
+.ins .ir:last-child{border-bottom:0}
+.ins .ir>div{padding:11px 14px;font-size:13px;border-right:1px solid #f1f3f6}
+.ins .ir>div:last-child{border-right:0}
+.ins .ir.h>div{background:#f9fafb;font-size:12px;font-weight:600;color:#374151}
+.ins .ir .obs{color:#374151}
+.ins .ir .act{color:var(--green-text);font-weight:500}
+@media(max-width:760px){.ins .ir{grid-template-columns:1fr}
+  .ins .ir>div{border-right:0;border-bottom:1px solid #f1f3f6}
+  .ins .ir.h{display:none}}
+/* ---------- calc ---------- */
+.calc-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:9px 0;font-size:13px}
+.calc-row label{flex:1;color:#374151}
+.calc-row input{width:150px;padding:6px 9px;border:1px solid var(--line);border-radius:6px;
+  font-size:13px;background:#fff;font-variant-numeric:tabular-nums;color:var(--ink)}
+.calc-row input:focus{border-color:var(--green-fill)}
+.result{background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:6px 14px;margin-top:14px}
+.result .r{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #f1f3f6}
+.result .r:last-child{border:none;font-weight:700;color:var(--green-text);font-size:14.5px}
+.result .r b{font-variant-numeric:tabular-nums}
+/* ---------- filter chips ---------- */
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:14px;
+  padding:5px 13px;font-size:12.5px;cursor:pointer}
+.chips button:hover{border-color:#94a3b8;color:var(--ink)}
+.chips button.on{background:#047857;border-color:#047857;color:#fff;font-weight:600}
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);background:var(--card);color:var(--muted);
+  padding:16px 22px;font-size:12px;line-height:1.6}
+.searchbox{width:100%;padding:9px 13px;border:1px solid var(--line);border-radius:8px;
+  font-size:13.5px;margin-bottom:11px;background:#fff;color:var(--ink)}
+.searchbox::placeholder{color:var(--muted)}
+.searchbox:focus{border-color:var(--green-fill)}
+@media(max-width:760px){.swot{grid-template-columns:1fr}.mapa{flex-direction:column}
+  .arrowcol{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>isopor-bahia<span class="sub">/ painel de pesquisa · reciclagem de EPS · Bahia</span></div>
+  <div class="topbar-right">
+    <div class="seg" id="cenario" aria-label="Cenário de dimensionamento">
+      <button data-c="cons">Conservador</button><button data-c="base" class="on">Base</button><button data-c="otim">Otimista</button>
+    </div>
+    <span class="chip">Corte out/2026 · RFB 11/01/2026 · SINAPI ago/2026</span>
+  </div>
+</div>
+
+<nav class="tabs" id="nav" aria-label="Seções do painel">
+  <button data-t="executivo" class="on">Decisão</button>
+  <button data-t="dados">Dados &amp; Insights</button>
+  <button data-t="bahia">Bahia &amp; Feira</button>
+  <button data-t="roadmap">Roadmap</button>
+  <button data-t="cadeia">Cadeia</button>
+  <button data-t="riscos">Vantagens × Riscos</button>
+  <button data-t="calc">Viabilidade</button>
+  <button data-t="fontes">Fontes</button>
+</nav>
+
+<main>
+
+<!-- =============== DECISÃO (perfil executivo) =============== -->
+<section id="executivo" class="active">
+  <h2>Avançar na Fase 0 agora; aprovar o CAPEX de R$ 150–400 mil somente após 3 gates em 90 dias</h2>
+  <p class="memo"><b>O que mudou:</b> desde out/2025 a reciclagem de embalagens plásticas deixou de ser voluntária (Decreto 12.688: 32% de recuperação em 2026, subindo a 50% em 2040), e a cadeia da Bahia registrou 1.666 aberturas de empresas em 2025 contra 450 em 2010. <b>Por que importa:</b> em Feira de Santana a demanda industrial por reciclados (332 t/mês) é ~66× o volume que as cooperativas locais reciclaram em 2025 (60 t no ano inteiro), enquanto nenhuma recicladora especializada em EPS opera no estado. <b>Causa:</b> o gargalo é estrutural (coleta e densificação ausentes), e não de demanda nem de tecnologia. <b>O que fazer:</b> contratar fornecimento e compra por 90 dias com CAPEX zero (Fase 0) e só então liberar o investimento. <b>Confiança:</b> moderada: o dimensionamento da BA é estimativa própria, ancorada em dados cadastrais oficiais da Receita Federal [S-42].</p>
+
+  <div class="grid g5">
+    <div class="tile"><div class="num">332 t/mês</div><div class="lbl">Demanda industrial por reciclados em Feira (10 de 30 indústrias)</div><div class="act">Ação: contratar volume na Fase 0</div><div class="src">Sebrae ago/2026 [S-07]</div></div>
+    <div class="tile"><div class="num">R$ 2,7–4,0 mi/ano</div><div class="lbl">Teto do mercado endereçável (oferta não atendida × margem bruta de R$ 1,48/kg)</div><div class="act neu">Limite superior, não projeção de receita</div><div class="src">estimativa própria sobre [S-02][S-16]</div></div>
+    <div class="tile"><div class="num">32% → 50%</div><div class="lbl">Meta legal de recuperação de embalagens plásticas (2026 → 2040)</div><div class="act">Ação: estruturar créditos de reciclagem até 2027</div><div class="src">Decreto 12.688/2025 [S-10]</div></div>
+    <div class="tile"><div class="num">R$ 150–400 mil</div><div class="lbl">CAPEX da 1ª onda (hub de coleta + densificação)</div><div class="act">Payback base: 2,4 anos a 20 t/mês</div><div class="src">estimativa própria; aba Viabilidade</div></div>
+    <div class="tile"><div class="num">0 / 140</div><div class="lbl">Recicladoras de EPS no estado / recuperadores genéricos no foco (95% são ME)</div><div class="act neu">Competição fragmentada; barreira técnica = diferencial</div><div class="src">RFB [S-42]</div></div>
+  </div>
+
+  <h2>Gate de decisão: o que precisa ser verdade antes de liberar o CAPEX</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Gate</th><th>Condição mensurável</th><th>Prazo</th><th>Se falhar</th></tr></thead>
+      <tbody>
+        <tr><td><b>G1: Feedstock</b></td><td>≥ 10 t/mês de EPS contratados com fornecedores (fábricas F1 e cooperativas F2/F3)</td><td>90 dias</td><td>Não abrir hub; renegociar ou encerrar a Fase 0</td></tr>
+        <tr><td><b>G2: Preço</b></td><td>Preço de venda do bloco densificado firmado ≥ R$ 1,90/kg com ao menos um comprador (Termotécnica ou Proecologic)</td><td>90 dias</td><td>Reduzir CAPEX ou trocar a rota de produto</td></tr>
+        <tr><td><b>G3: Incentivos</b></td><td>Entidade gestora de créditos de reciclagem (CCRLR) mapeada e elegibilidade PROIND confirmada</td><td>120 dias</td><td>Reprecificar o projeto sem os incentivos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Os três riscos que quebram a tese</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Risco</th><th>Evidência</th><th>Mitigação já prevista</th></tr></thead>
+      <tbody>
+        <tr><td>Termotécnica (65% do mercado) é ao mesmo tempo maior comprador potencial e concorrente</td><td>[S-04][S-15]</td><td>Contrato de feedstock; não entrar em transformação na 1ª onda</td></tr>
+        <tr><td>Não existe índice de preço de recicláveis para a Bahia</td><td>IPR-CEMPRE cobre apenas MG, PR e RS [S-19]</td><td>Contrato indexado por % sobre o PS virgem; gate G2</td></tr>
+        <tr><td>Contaminação do pós-consumo e atrito setorial (26,4% do escopo histórico já baixado)</td><td>[S-15][S-42]</td><td>Iniciar com refugo pós-industrial (F1) e due diligence cadastral dos parceiros</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Método, dados brutos, cenários e calculadora nas abas seguintes. Toda afirmação carrega ID de fonte [S-nn]; lista completa na aba Fontes.</p>
+</section>
+
+<!-- =============== DADOS & INSIGHTS =============== -->
+<section id="dados">
+  <h2>Do dado bruto ao insight: o que os dados revelam</h2>
+  <p class="lead">Extração da base oficial de CNPJ da Receita Federal (Base dos Dados/BigQuery, partição 11/01/2026, 19 subclasses CNAE, situação ATIVA) cruzada com as fontes de mercado. Consulta reproduzível: <code>rfb/extrair_rfb.py</code> + <code>rfb/posprocessar.py</code> (dry-run de custo; custo observado ≈ 0 GB) [S-42][S-43].</p>
+
+  <div class="ins">
+    <div class="ir h"><div>Dado bruto</div><div>Interpretação</div><div>Ação</div></div>
+    <div class="ir"><div class="obs">Aberturas na cadeia da BA: 450 (2010) → <b>1.666 (2025)</b>; 56% do foco abriu desde 2019 [S-42]</div><div>Mercado em expansão acelerada; os novos entrantes validam a demanda antes de qualquer tese nossa</div><div class="act">Mapear os entrantes dos últimos 3 anos como parceiros e clientes</div></div>
+    <div class="ir"><div class="obs">Demanda industrial em Feira: 3.984 t/ano [S-07] contra 60 t recicladas pelas cooperativas locais em 2025 [S-08]</div><div>A demanda supera a coleta estruturada em ~66×; o gargalo é coleta e densificação, não procura</div><div class="act">Fase 0: contratar volume; o hub captura déficit já existente</div></div>
+    <div class="ir"><div class="obs">0 recicladoras de EPS no estado; 140 recuperadores genéricos no foco, 95% de porte ME (Salvador 64, Feira 34) [S-04][S-15][S-42]</div><div>Fragmentação sem dominador local; ninguém no estado domina a tecnologia de EPS</div><div class="act">Diferenciar por especialização; due diligence pelas baixas históricas</div></div>
+    <div class="ir"><div class="obs">72,2% do foco está em Salvador (2.068) e Feira (980); núcleo de Feira = 324 estabelecimentos [S-42]</div><div>Dois polos concentram a cadeia; Feira é o segundo polo e o entroncamento rodoviário</div><div class="act">Sediar o hub em Feira; rota de coleta secundária para Salvador</div></div>
+    <div class="ir"><div class="obs">Capital social do foco: R$ 43,9 bi, mas o top-10 (76,6%) é composto por ArcelorMittal, Gerdau e BTG: empresas que entram por CNAE secundária [S-42]</div><div>O escopo amplo infla contagens com grupos multi-setoriais; o número confiável de comparação é o núcleo (3.754 na BA)</div><div class="act">Usar o núcleo em benchmarks; nunca citar o total amplo sem nota</div></div>
+    <div class="ir"><div class="obs">Taxa histórica de baixa do escopo: 26,4%; 2.377 de 4.222 estabelecimentos do foco são de 2019 em diante [S-42]</div><div>Dinâmica alta com atrito relevante: parte dos entrantes não sobrevive</div><div class="act">Exigir situação cadastral limpa e histórico antes de assinar</div></div>
+  </div>
+
+  <h2>Aberturas na cadeia (BA): série oficial da Receita Federal</h2>
+  <div class="chart" id="chart-abert">
+    <div class="tt" id="tt-abert"></div>
+    <svg viewBox="0 0 760 230" id="svg-abert" role="img" aria-label="Gráfico de barras: aberturas anuais de empresas da cadeia de plásticos e reciclagem na Bahia, de 450 em 2010 para 1.666 em 2025"></svg>
+    <p class="note">Novos CNPJs com CNAE no escopo por ano de início de atividade; 2026 parcial (43 aberturas até a partição de 11/01/2026). Fonte: [S-42].</p>
+  </div>
+
+  <div class="grid g6" style="margin-top:14px">
+    <div class="tile"><div class="num">16.204</div><div class="lbl">Estabelecimentos ativos no escopo da cadeia na BA</div><div class="cmp">5,85% do Brasil · 6ª posição</div><div class="src">RFB [S-42]</div></div>
+    <div class="tile"><div class="num">3.754</div><div class="lbl">Núcleo (CNAE principal no escopo), número comparável</div><div class="src">RFB [S-42]</div></div>
+    <div class="tile"><div class="num">335</div><div class="lbl">Recuperadores de plásticos ativos (CNAE 38.32-7)</div><div class="cmp">34 em Feira</div><div class="src">RFB [S-42]</div></div>
+    <div class="tile"><div class="num">77%</div><div class="lbl">Cadeia de porte micro (ME)</div><div class="src">EPP 13% · demais 10% [S-42]</div></div>
+    <div class="tile"><div class="num">26,4%</div><div class="lbl">Taxa histórica de baixa (baixadas ÷ escopo)</div><div class="src">RFB [S-42]</div></div>
+    <div class="tile"><div class="num">5/5</div><div class="lbl">Players mapeados por busca web confirmados na base cadastral</div><div class="src">validação cruzada [S-42]</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="bd"><h3>Ativos por setor na BA (escopo amplo: 16.204)</h3><div id="bd-setor"></div></div>
+    <div class="bd"><h3>Municípios-alvo: ativos no escopo</h3><div id="bd-mun"></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="bd"><h3>Ranking nacional: ativos no escopo</h3><div id="bd-uf"></div></div>
+    <div class="bd"><h3>Porte na BA</h3><div id="bd-porte"></div></div>
+  </div>
+
+  <h2>Players cadastrados revelados pela RFB (recorte de Feira)</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Empresa (razão social)</th><th>Setor</th><th>Indicador</th><th>Leitura para o investimento</th></tr></thead>
+      <tbody>
+        <tr><td>LWART Soluções Ambientais S.A.</td><td>Recuperação/tratamento</td><td>Capital social R$ 287,9 mi</td><td>Operadora formal grande: potencial parceiro logístico</td></tr>
+        <tr><td>Sustentare Saneamento S/A</td><td>Coleta de resíduos</td><td>R$ 173,7 mi</td><td>Coleta contratada: canal de captação de volume</td></tr>
+        <tr><td>Qualix Serviços Ambientais S.A.</td><td>Coleta de resíduos</td><td>R$ 115,5 mi</td><td>Coleta contratada: canal de captação de volume</td></tr>
+        <tr><td>ISOBRar Ind. e Com. de Embalagens (Isobras)</td><td>Produção de plásticos/EPS</td><td>CNPJ 28.532.048/0001-60 · Itatim</td><td>Gerador de refugo + cliente ESG (validado)</td></tr>
+        <tr><td>ABS Poliestireno (Isobahia)</td><td>Produção de plásticos/EPS</td><td>CNPJ 13.236.748/0001-30 · SAJ</td><td>Gerador de refugo + potencial comprador (validado)</td></tr>
+        <tr><td>3R Novo Mundo Rec. Materiais Plásticos</td><td>Recuperação de plásticos</td><td>CNAE 38.32-7 · ME · Feira</td><td>Concorrente/parceiro no pós-consumo (34 no município)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warnbox"><b>Limites desta evidência:</b> CNAE não nomeia EPS (nicho misturado no agregado de plásticos); a base mede apenas o formal; partição trimestral (11/01/2026); capital social não é faturamento; estabelecimentos entram por CNAE secundária, por isso o escopo amplo (16.204) supera o núcleo (3.754). Contagem nacional usa CNPJ distinto e a baiana usa estabelecimentos: comparabilidade aproximada.</div>
+</section>
+
+<!-- =============== BAHIA & FEIRA =============== -->
+<section id="bahia">
+  <h2>Dimensionamento do mercado baiano: cenários</h2>
+  <div class="tbl-wrap">
+    <table id="tab-cen">
+      <thead><tr><th>Cenário</th><th>Hipótese</th><th>Consumo de EPS (t/ano)</th><th>Emissão pós-uso (t/ano)</th><th>Reciclado no patamar nacional (t/ano)</th></tr></thead>
+      <tbody>
+        <tr data-c="cons"><td>Conservador</td><td>Fatia pelo PIB (~3,5%)</td><td>3.500 – 4.200</td><td>1.400 – 2.100</td><td>480 – 720</td></tr>
+        <tr data-c="base"><td><b>Base</b></td><td>Fatia populacional (~6,9%)</td><td><b>6.900 – 8.300</b></td><td><b>2.800 – 4.100</b></td><td><b>960 – 1.400</b></td></tr>
+        <tr data-c="otim"><td>Otimista</td><td>Expansão construção/embalagens NE</td><td>até 9.000</td><td>até 4.500</td><td>até 1.550</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Método: extrapolação por participação populacional (BA = 14.141.705 hab., Censo 2022) e PIB sobre a produção nacional de ~100–119,6 mil t/ano [S-02][S-03][S-30]; parcela pós-uso calibrada pelo índice nacional de 34,5% [S-02] e pela parcela incorporada à construção (~50%) [S-25b]. Não há estudo público exclusivo da BA; a aba Dados &amp; Insights ancorou os contadores formais [S-42].</p>
+
+  <div class="grid g3" style="margin-top:16px">
+    <div class="tile"><div class="num" id="s-consumo">6.900–8.300 t/ano</div><div class="lbl">Consumo estimado de EPS na Bahia (cenário <span id="cen-nome">base</span>)</div><div class="src">estimativa própria × [S-02]</div></div>
+    <div class="tile"><div class="num" id="s-emissao">2.800–4.100 t/ano</div><div class="lbl">Emissão pós-uso plausível</div><div class="src">35–50% do consumo · estimativa</div></div>
+    <div class="tile"><div class="num" id="s-reciclado">960–1.400 t/ano</div><div class="lbl">Reciclado no patamar nacional</div><div class="cmp" id="s-naoat">Oferta não atendida ≈ 1.800–2.700 t/ano</div><div class="src">[S-02]</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div>
+      <h3>Feira de Santana: fundamentos</h3>
+      <ul>
+        <li><b>616.279 hab.</b> (Censo 2022): 2ª maior cidade da BA, maior do interior nordestino [S-30]</li>
+        <li><b>PIB ~R$ 11,96 bi</b>: 3º da Bahia, 69º do Brasil [S-29]</li>
+        <li><b>2.209 indústrias</b> · ~25% do PIB local · 35 mil empregos diretos (CIFS) [S-29]</li>
+        <li><b>BR-116 / BR-101 / BR-324</b>: maior entroncamento rodoviário fora do Sudeste; 107 km de Salvador [S-29][S-29b]</li>
+        <li>Cooperativas reciclaram <b>60 t</b> em 2025 (1º ano da Divisão de Coleta Seletiva da Sesp): Redesol, Ginga Recicla, Artemares, Coobafs [S-08]</li>
+        <li>Artemares: <b>&gt;60 t/mês</b> e &gt;100 recicladores [S-31]</li>
+        <li>RFB: <b>324 estabelecimentos do núcleo</b> e <b>34 recuperadores de plásticos</b> na cidade [S-42]</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Demanda regional já dimensionada (Sebrae, ago/2026)</h3>
+      <ul>
+        <li><b>332 t/mês</b> de plásticos recicláveis demandados por 10 das 30 indústrias acompanhadas [S-07]</li>
+        <li><b>3.984 t/ano</b> de demanda potencial em ~20 tipos de material [S-07]</li>
+        <li>Participação indireta de PS/EPS (12,8% do processamento nacional [S-06]): ~400–510 t/ano (estimativa própria)</li>
+        <li>8 cooperativas baianas declararam estar deixando de vender para ES/MG (atravessadores) [S-07]</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Incentivos aplicáveis</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Instrumento</th><th>O que oferece</th><th>Condição</th><th>Janela</th></tr></thead>
+      <tbody>
+        <tr><td><b>PROIND</b> (Dec. 18.802/2018)</td><td>Crédito presumido de ICMS 65%–80%</td><td>CNAE grupo 22 (plásticos) elegível; FUNCEP 10%</td><td>até 31/12/2032 [S-25]</td></tr>
+        <tr><td><b>DESENVOLVE</b> (Lei 7.980/2001)</td><td>Diferimento e dilação de até 72 meses do ICMS</td><td>Novos projetos (Carta Consulta)</td><td>≤ 12 anos [S-26]</td></tr>
+        <tr><td><b>BNDES — Tudo na Circularidade</b></td><td>Crédito dedicado a reciclagem</td><td>Projetos alinhados à PNRS</td><td>contínuo [S-27]</td></tr>
+        <tr><td><b>Finor (BNB)</b></td><td>Fundo para projetos produtivos do NE</td><td>Projetos no Nordeste</td><td>contínuo [S-28]</td></tr>
+        <tr><td><b>CCRLR — Créditos de Reciclagem</b></td><td>Receita por tonelada reciclada comprovada</td><td>Entidade gestora homologada (Dec. 11.413)</td><td>efetivo [S-13][S-14]</td></tr>
+        <tr><td><b>FNMA / editais federais</b></td><td>Apoio a projetos de coleta e reciclagem</td><td>Conformidade PNRS/SINIR</td><td>editais [S-33b]</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- =============== ROADMAP =============== -->
+<section id="roadmap">
+  <h2>Linha do tempo do setor</h2>
+  <div class="tl">
+    <div class="tl-i"><div class="tl-y">1960 / 1998</div><div class="tl-t">Marca Isopor® registrada; depois adquirida pela Knauf (1998) [S-01]</div></div>
+    <div class="tl-i"><div class="tl-y">1993</div><div class="tl-t">Isoplast inicia no Norte-Nordeste; hoje filial em Simões Filho/BA [S-23]</div></div>
+    <div class="tl-i"><div class="tl-y">2005</div><div class="tl-t">Proecologic: maior recicladora dedicada de EPS do país [S-15]</div></div>
+    <div class="tl-i"><div class="tl-y">2007</div><div class="tl-t">Termotécnica lança o Programa Reciclar EPS: hoje 51 mi de kg reciclados [S-04]</div></div>
+    <div class="tl-i"><div class="tl-y">2010</div><div class="tl-t">PNRS institui a logística reversa · 450 aberturas na cadeia da BA no ano [S-13][S-42]</div></div>
+    <div class="tl-i"><div class="tl-y">2011–2015</div><div class="tl-t">Nascem os players baianos: Isobahia (2011) e Iso Conquista (2015) [S-21][S-22]</div></div>
+    <div class="tl-i"><div class="tl-y">2019–2025</div><div class="tl-t">Isobras cresce em Itatim e anuncia R$ 70 mi (dez/2025): 550 → 1.050 empregos [S-20]</div></div>
+    <div class="tl-i"><div class="tl-y">2023</div><div class="tl-t">Decretos 11.413 (Créditos de Reciclagem) e 11.414 [S-13][S-14]</div></div>
+    <div class="tl-i"><div class="tl-y">2025</div><div class="tl-t">Decreto 12.688: logística reversa obrigatória · 1.666 aberturas na cadeia da BA no ano [S-10][S-42]</div></div>
+    <div class="tl-i"><div class="tl-y">2026</div><div class="tl-t">Exigências começam: 32% de recuperação e 22% de conteúdo reciclado · Sebrae conecta 8 cooperativas baianas à indústria em Feira [S-10][S-07]</div></div>
+  </div>
+
+  <h2>Players e onde estão (Bahia e adjacências)</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Player</th><th>Papel</th><th>Localização</th><th>Escala declarada</th><th>Importância</th></tr></thead>
+      <tbody>
+        <tr><td><b>Knauf Isopor®</b></td><td>Produtora de EPS + ponto de coleta</td><td>Simões Filho/BA (1 de 7 fábricas)</td><td>Líder nacional</td><td><span class="tag">fornecedor de refugo</span></td></tr>
+        <tr><td><b>Isoplast</b></td><td>Produtora de EPS (líder N/NE); usa bloco T1R reciclado</td><td>Filial Simões Filho/BA · matriz Maracanaú/CE</td><td>Desde 1993</td><td><span class="tag">cliente de reciclado</span></td></tr>
+        <tr><td><b>Isobras</b></td><td>Embalagens descartáveis (5ª maior do país)</td><td>Itatim/BA (BR-324)</td><td>R$ 70 mi; 550→1.050 empregos</td><td><span class="tag">gerador de refugo</span><span class="tag">cliente ESG</span></td></tr>
+        <tr><td><b>Isobahia</b></td><td>Placas e blocos de EPS</td><td>Santo Antônio de Jesus/BA</td><td>Desde 2011</td><td><span class="tag">cliente regional</span></td></tr>
+        <tr><td><b>Iso Conquista</b></td><td>Indústria e comércio de EPS</td><td>Vitória da Conquista/BA</td><td>Ativa desde 2015</td><td><span class="tag">fornecedor/cliente</span></td></tr>
+        <tr><td><b>Termotécnica</b></td><td>Maior transformadora de EPS da AL</td><td>Unidade de Petrolina/PE mais próxima</td><td>65% de market share; 51 mi kg</td><td><span class="tag">cliente de feedstock</span> <span class="badge b-baixa">concentração</span></td></tr>
+        <tr><td><b>Proecologic</b></td><td>Maior recicladora dedicada de EPS/XPS</td><td>Taubaté/SP</td><td>600–700 t/mês</td><td><span class="tag">cliente de feedstock</span></td></tr>
+        <tr><td><b>Realce Indústria</b></td><td>Transformadora com 80–90% de reciclado</td><td>Conceição do Jacuípe/BA</td><td>300 t/ano; R$ 1,8 mi (2025)</td><td><span class="tag">case local</span><span class="tag">cliente</span></td></tr>
+        <tr><td><b>Redesol · Ginga Recicla · Artemares · Coobafs</b></td><td>Cooperativas</td><td>Feira de Santana (4 bairros)</td><td>Artemares &gt;60 t/mês</td><td><span class="tag">fornecedores</span></td></tr>
+        <tr><td><b>16 cooperativas LIMPURB</b></td><td>Coleta em Salvador</td><td>Salvador/BA</td><td>CANORE e COOPERBRAVA aceitam isopor</td><td><span class="tag">fornecedores</span></td></tr>
+        <tr><td><b>Sebrae Pró-Catadores</b></td><td>Estruturador oferta × demanda</td><td>Feira de Santana/BA</td><td>332 t/mês demandados</td><td><span class="tag">parceiro institucional</span></td></tr>
+        <tr><td><b>Grupo MK (Mondial)</b></td><td>Eletroportáteis</td><td>Conceição do Jacuípe + Cruz das Almas</td><td>R$ 45,7 mi; 1.400 empregos</td><td><span class="tag">gerador de EPS</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">Fontes: [S-01][S-04][S-05][S-07][S-08][S-09][S-15][S-20][S-21][S-22][S-23][S-24][S-24b][S-31][S-42] · CNPJs confirmados na aba Dados &amp; Insights.</p>
+  </div>
+</section>
+
+<!-- =============== CADEIA =============== -->
+<section id="cadeia">
+  <h2>Mapa de fornecedores × clientes da cadeia</h2>
+  <p class="lead">Filtre por prontidão de contato. Mesma base na planilha <code>fontes_cadeia_isopor_bahia.xlsx</code> (abas Fornecedores / Clientes).</p>
+  <div class="chips" id="chips-f">
+    <button data-f="all" class="on">Todos</button>
+    <button data-f="Alta">Prontidão alta</button>
+    <button data-f="Média-alta">Média-alta</button>
+    <button data-f="Média">Prontidão média</button>
+  </div>
+  <div class="mapa">
+    <div class="col"><h3>FORNECEDORES (insumo)</h3><div class="list" id="lista-for"></div></div>
+    <div class="arrowcol" aria-hidden="true">→</div>
+    <div class="col"><h3>OPERAÇÃO</h3><div class="list">
+      <div class="item" style="background:#eff6ff;border-color:#bfdbfe"><b>Hub Feira: coleta → triagem → densificação</b><span class="why">Compactador ref. 18–22 kg/h por máquina; densificar antes de transportar [S-35][S-36]</span></div>
+      <div class="item" style="background:#eff6ff;border-color:#bfdbfe"><b>Beneficiamento</b><span class="why">Blocos T1R, pérolas para concreto leve, perfis: âncora SINAPI-BA [S-18]</span></div>
+      <div class="item" style="background:#eff6ff;border-color:#bfdbfe"><b>Regranulação (3ª onda)</b><span class="why">Pellets PSAI reciclado a R$ 11–12/kg [S-16]</span></div>
+      <div class="item" style="background:var(--green-soft);border-color:var(--green-line)"><b>Créditos CCRLR</b><span class="why">Receita adicional por tonelada comprovada [S-13]</span></div>
+    </div></div>
+    <div class="arrowcol" aria-hidden="true">→</div>
+    <div class="col"><h3>CLIENTES (demanda)</h3><div class="list" id="lista-cli"></div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div>
+      <h3>Escada de valor do material</h3>
+      <ul>
+        <li>Solto R$ 0,30–1,00/kg → densificado R$ 1,50–2,80/kg → pellets PSAI R$ 11–12/kg; bloco 2F (BA) R$ 532,70/m³ e pérolas R$ 69,24/kg (SINAPI ago/2026) [S-16][S-17][S-18][S-36b]</li>
+        <li>Cada degrau exige mais CAPEX e feedstock mais disciplinada: subir a escada é a tese de crescimento.</li>
+        <li>Os Certificados de Crédito de Reciclagem adicionam receita por cima da venda do material [S-13][S-14].</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Onde está o risco na cadeia</h3>
+      <ul>
+        <li>Termotécnica (65%) e Proecologic concentram a compra de feedstock: clientes e possíveis entrantes regionais [S-04][S-15].</li>
+        <li>Sem densificação na origem, 70 m³ levam só 100–400 kg (contra 6 t densificado) [S-15].</li>
+        <li>Sem índice de preço regional: o IPR-CEMPRE ainda não cobre a Bahia [S-19].</li>
+        <li>RFB: 26,4% do escopo histórico já foi baixado: checar solidez de parceiros [S-42].</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============== VANTAGENS × RISCOS =============== -->
+<section id="riscos">
+  <h2>Vantagens competitivas</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Vantagem</th><th>Evidência</th></tr></thead>
+      <tbody>
+        <tr><td>V1</td><td><b>Vazio competitivo</b>: nenhuma recicladora de EPS especializada na BA; material escoa para PE/SP/Sudeste</td><td>[S-04][S-05][S-15]</td></tr>
+        <tr><td>V2</td><td><b>Regulação a favor</b>: Decreto 12.688: 32%→50% recuperação; 22%→40% conteúdo reciclado</td><td>[S-10][S-11][S-12]</td></tr>
+        <tr><td>V3</td><td><b>Monetização imediata</b> da reciclagem via Certificados de Crédito</td><td>[S-13][S-14]</td></tr>
+        <tr><td>V4</td><td><b>Localização logística</b>: maior entroncamento fora do Sudeste; 107 km de Salvador</td><td>[S-29][S-29b]</td></tr>
+        <tr><td>V5</td><td><b>Demanda já dimensionada</b>: 332 t/mês em Feira (3.984 t/ano)</td><td>[S-07]</td></tr>
+        <tr><td>V6</td><td><b>Oferta estruturada</b>: 4 cooperativas em Feira + 16 em Salvador, com Sebrae elevando a qualidade</td><td>[S-07][S-08][S-09]</td></tr>
+        <tr><td>V7</td><td><b>Arbitragem de volume</b>: comprar solto barato e vender densificado/produto</td><td>[S-16][S-17][S-36b]</td></tr>
+        <tr><td>V8</td><td><b>Incentivos fiscais</b>: PROIND 65–80% (CNAE 22) e DESENVOLVE</td><td>[S-25][S-26]</td></tr>
+        <tr><td>V9</td><td><b>Benchmarking local</b>: Realce: 300 t/ano, R$ 1,8 mi, 80–90% de reciclado</td><td>[S-24]</td></tr>
+        <tr><td>V10</td><td><b>Baixo consumo de água/energia</b> na reciclagem mecânica + narrativa ESG</td><td>[S-02][S-04]</td></tr>
+        <tr><td>V11</td><td><b>Feedstock puro inicial</b>: refugos pós-industriais das fábricas de EPS da BA</td><td>[S-01][S-20][S-23]</td></tr>
+        <tr><td>V12</td><td><b>Dinâmica confirmada</b>: aberturas +270% (2010→2025); 335 recuperadores de plásticos ativos</td><td>[S-42]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Trade-offs e riscos</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Trade-off</th><th>Mitigação proposta</th></tr></thead>
+      <tbody>
+        <tr><td>T1</td><td><b>Logística do volume</b>: 98% ar; o frete consome a margem sem densificação</td><td>Densificar no galpão de coleta desde a 1ª fase [S-15]</td></tr>
+        <tr><td>T2</td><td><b>Concorrência com o virgem</b>: PS virgem acompanha o petróleo</td><td>Contratos com % de desconto sobre o virgem, não preço absoluto [S-16]</td></tr>
+        <tr><td>T3</td><td><b>Concentração</b>: Termotécnica: 65% do mercado e 1/3 do pós-consumo reciclado</td><td>Posicionar como fornecedor de feedstock, não concorrente [S-04]</td></tr>
+        <tr><td>T4</td><td><b>Contaminação</b>: caixas de pescado/alimento exigem higienização</td><td>Fase inicial com pós-industrial (F1) [S-15]</td></tr>
+        <tr><td>T5</td><td><b>Qualidade vs. preço</b>: reciclado varia de R$ 2,20 a R$ 12/kg</td><td>Separar por cor/pureza; vender ao topo da escada [S-16][S-17]</td></tr>
+        <tr><td>T6</td><td><b>Sem índice regional</b>: CEMPRE-IPR não cobre a BA</td><td>Contratos indexados próprios; âncora SINAPI-BA [S-18][S-19]</td></tr>
+        <tr><td>T7</td><td><b>Dependência de política pública</b>: coleta seletiva de Feira tem 1 ano</td><td>Diversificar origens (indústria + varejo + cooperativas) [S-08]</td></tr>
+        <tr><td>T8</td><td><b>Maquinário importado</b>: câmbio e prazo</td><td>Planejar importação; capturar incentivo de ativo fixo [S-25]</td></tr>
+        <tr><td>T9</td><td><b>Conformidade sanitária</b>: contato alimentar exige ANVISA</td><td>Escopo inicial em técnicos/construção [S-10]</td></tr>
+        <tr><td>T10</td><td><b>Disciplina de separação na origem</b></td><td>Educação ambiental (precedente: Isopor Amigo, PEV de 23%→98%) [S-06b]</td></tr>
+        <tr><td>T11</td><td><b>Atrito setorial</b>: 26,4% do escopo histórico já baixado na RFB</td><td>Due diligence cadastral de parceiros antes de contratar [S-42]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>SWOT: recorte Feira de Santana</h2>
+  <div class="swot">
+    <div class="s-for"><h3>Forças</h3>Hub logístico (BRs 116/101/324) · cooperativas organizadas · demanda industrial próxima (332 t/mês) · incentivos PROIND · case Realce na região · 324 estabelecimentos do núcleo (RFB)</div>
+    <div class="s-frac"><h3>Fraquezas</h3>Nenhuma recicladora local de EPS · coleta seletiva com 1 ano · sem índice de preço regional · escala inicial pequena · cadeia 77% de ME</div>
+    <div class="s-oport"><h3>Oportunidades</h3>Decreto 12.688 (metas 2026→2040) · créditos de reciclagem · conteúdo reciclado obrigatório · fábricas de EPS como fornecedoras · aberturas +270% em 15 anos · interiorização industrial da BA</div>
+    <div class="s-amea"><h3>Ameaças</h3>Preço do PS virgem (petróleo) · domínio da Termotécnica · contaminação do pós-consumo · volatilidade cambial · 26,4% de taxa histórica de baixa</div>
+  </div>
+</section>
+
+<!-- =============== VIABILIDADE =============== -->
+<section id="calc">
+  <h2>Calculadora de viabilidade: premissas editáveis</h2>
+  <p class="lead">Todos os valores são premissas de mercado ou estimativas próprias (aba Premissas da planilha). Modelo A inicial: hub de coleta + densificação. Os gates de decisão estão na aba Decisão.</p>
+  <div class="grid g2">
+    <div class="tile">
+      <div class="calc-row"><label for="volume">Volume processado (t/mês, EPS solto)</label><input type="number" id="volume" value="20" min="1" step="1"></div>
+      <div class="calc-row"><label for="compra">Custo de compra do EPS solto (R$/kg)</label><input type="number" id="compra" value="0.50" min="0" step="0.05"></div>
+      <div class="calc-row"><label for="venda">Venda do bloco densificado (R$/kg)</label><input type="number" id="venda" value="2.10" min="0" step="0.05"></div>
+      <div class="calc-row"><label for="capex">CAPEX inicial (R$)</label><input type="number" id="capex" value="275000" min="0" step="5000"></div>
+      <div class="calc-row"><label for="custofixo">Custo fixo mensal (R$)</label><input type="number" id="custofixo" value="18000" min="0" step="1000"></div>
+      <div class="calc-row"><label for="frete">Custo logístico (R$/t processada)</label><input type="number" id="frete" value="120" min="0" step="10"></div>
+      <div class="calc-row"><label for="perda">Perda/triagem (%)</label><input type="number" id="perda" value="8" min="0" max="50" step="1"></div>
+      <div class="calc-row"><label for="ccrlr">Créditos de reciclagem (R$/t)</label><input type="number" id="ccrlr" value="60" min="0" step="10"></div>
+      <div class="result" id="resultado"></div>
+    </div>
+    <div class="tile">
+      <h3 style="margin-top:0">Sensibilidade: resultado mensal por volume</h3>
+      <div id="sens"></div>
+      <div class="warnbox"><b>Atenção:</b> as faixas de preço (R$ 0,30–1,00/kg solto; R$ 1,50–2,80/kg densificado) são triangulações sem índice oficial para a Bahia. Trate os resultados como sensibilidade, não projeção; feche cotações reais antes de decidir [S-16][S-17][S-19][S-36b].</div>
+    </div>
+  </div>
+
+  <h2>Roteiro de investimento em três ondas</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Fase</th><th>Prazo</th><th>Ação</th><th>CAPEX</th><th>Critério para a próxima fase</th></tr></thead>
+      <tbody>
+        <tr><td><b>0. Pré-viabilidade</b></td><td>0–3 meses</td><td>Contratos de fornecimento (F1–F3) e compra (C1, C5); medir volume real por 90 dias</td><td>Baixo (comercial)</td><td>Gates G1–G3 da aba Decisão</td></tr>
+        <tr><td><b>1. Hub + densificação</b></td><td>3–9 meses</td><td>Galpão em Feira; densificador; 1ª venda p/ Termotécnica/Proecologic; CCRLR; PROIND</td><td>R$ 150–400 mil</td><td>≥ 15 t/mês estáveis e margem bruta &gt; 25%</td></tr>
+        <tr><td><b>2. Beneficiamento</b></td><td>9–24 meses</td><td>Blocos T1R / pérolas para construção; venda regional (SINAPI-BA)</td><td>R$ 300 mil – 1 mi</td><td>2+ clientes regionais recorrentes</td></tr>
+        <tr><td><b>3. Regranulação</b></td><td>24–48 meses</td><td>Extrusão/pelletização de PS para as metas de conteúdo reciclado</td><td>R$ 1,5–3 mi</td><td>Feedstock ≥ 50 t/mês garantida</td></tr>
+      </tbody>
+    </table>
+    <p class="note">CAPEXs = estimativas próprias; âncoras: [S-18] (SINAPI-BA), [S-35][S-36] (máquinas), [S-07] (demanda).</p>
+  </div>
+</section>
+
+<!-- =============== FONTES =============== -->
+<section id="fontes">
+  <h2>Fontes</h2>
+  <p class="lead">Lista completa e editável também em <code>fontes_cadeia_isopor_bahia.xlsx</code> (aba "Fontes") e na Seção 11 do relatório <code>relatorio_mercado_isopor_bahia.md/.docx/.pdf</code>.</p>
+  <input id="busca" class="searchbox" placeholder="Filtrar fontes por ID, título ou tipo…" aria-label="Filtrar fontes">
+  <div class="tbl-wrap">
+    <table id="tblfontes">
+      <thead><tr><th style="width:64px">ID</th><th style="width:30%">Fonte</th><th style="width:130px">Tipo</th><th>URL</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <b>isopor-bahia</b>: painel de pesquisa: Mercado de Reciclagem de Isopor (EPS) na Bahia, com foco em Feira de Santana · corte out/2026 ·
+  evidência cadastral: base oficial de CNPJ da Receita Federal (Base dos Dados, partição 11/01/2026) [S-42] ·
+  números sem fonte são estimativas próprias sinalizadas · não constitui aconselhamento jurídico, tributário ou financeiro ·
+  arquivos irmãos: <b>relatorio_mercado_isopor_bahia</b> (.md/.docx/.pdf) e <b>fontes_cadeia_isopor_bahia.xlsx</b>
+</footer>
+
+<script id="rfb-data" type="application/json">
+{
+  "aberturas": {"2010":450,"2011":484,"2012":441,"2013":561,"2014":452,"2015":485,"2016":536,
+                "2017":665,"2018":670,"2019":790,"2020":931,"2021":1330,"2022":1183,
+                "2023":1248,"2024":1349,"2025":1666},
+  "setor": [["Outro CNAE (entrou por secundária)",12354],["Coleta de resíduos",1129],
+            ["Recuperação/tratamento (outros)",961],["Produção de plásticos/EPS",781],
+            ["Comércio de sucata",576],["Recuperação de plásticos",335],["Reparo de maq. plásticos",68]],
+  "municipio": [["Salvador",2068],["Feira de Santana",980],["Vitória da Conquista",527],
+                ["Simões Filho",377],["Santo Antônio de Jesus",132],["Conceição do Jacuípe",121],["Itatim",17]],
+  "uf": [["SP",68047],["MG",26557],["PR",19057],["RJ",18029],["RS",17241],["BA",15781],
+         ["SC",13478],["GO",10667],["CE",10606],["PA",8531]],
+  "porte": [["ME",12538],["EPP",2036],["DEMAIS",1630]],
+  "cenario": {
+    "cons": {"nome":"conservador","consumo":"3.500–4.200 t/ano","emissao":"1.400–2.100 t/ano","reciclado":"480–720 t/ano","naoatendida":"Oferta não atendida ≈ 700–1.400 t/ano"},
+    "base": {"nome":"base","consumo":"6.900–8.300 t/ano","emissao":"2.800–4.100 t/ano","reciclado":"960–1.400 t/ano","naoatendida":"Oferta não atendida ≈ 1.800–2.700 t/ano"},
+    "otim": {"nome":"otimista","consumo":"até 9.000 t/ano","emissao":"até 4.500 t/ano","reciclado":"até 1.550 t/ano","naoatendida":"Oferta não atendida ≈ até 2.950 t/ano"}
+  }
+}
+</script>
+
+<script>
+/* navegação */
+document.getElementById('nav').addEventListener('click', function(e){
+  if(e.target.tagName!=='BUTTON') return;
+  document.querySelectorAll('#nav button').forEach(function(b){b.classList.remove('on')});
+  document.querySelectorAll('main section').forEach(function(s){s.classList.remove('active')});
+  e.target.classList.add('on');
+  document.getElementById(e.target.dataset.t).classList.add('active');
+  window.scrollTo(0,0);
+});
+
+var DATA = JSON.parse(document.getElementById('rfb-data').textContent);
+var fmt = function(n){return n.toLocaleString('pt-BR')};
+
+/* cenário (topbar) */
+document.getElementById('cenario').addEventListener('click', function(e){
+  if(e.target.tagName!=='BUTTON') return;
+  document.querySelectorAll('#cenario button').forEach(function(b){b.classList.remove('on')});
+  e.target.classList.add('on');
+  var c = DATA.cenario[e.target.dataset.c];
+  document.getElementById('cen-nome').textContent = c.nome;
+  document.getElementById('s-consumo').textContent = c.consumo;
+  document.getElementById('s-emissao').textContent = c.emissao;
+  document.getElementById('s-reciclado').textContent = c.reciclado;
+  document.getElementById('s-naoat').textContent = c.naoatendida;
+  document.querySelectorAll('#tab-cen tbody tr').forEach(function(tr){
+    tr.style.background = (tr.dataset.c===e.target.dataset.c) ? '#ecfdf5' : '';
+  });
+});
+document.querySelectorAll('#tab-cen tbody tr').forEach(function(tr){ if(tr.dataset.c==='base') tr.style.background='#ecfdf5'; });
+
+/* gráfico de aberturas — o único momento de movimento do painel */
+(function(){
+  var W=760,H=230,padL=46,padR=12,padT=16,padB=34;
+  var entries = Object.entries(DATA.aberturas);
+  var vals = entries.map(function(e){return e[1]});
+  var max = Math.ceil(Math.max.apply(null,vals)/200)*200;
+  var bw = (W-padL-padR)/entries.length;
+  var y = function(v){return padT + (H-padT-padB) * (1 - v/max)};
+  var svg='';
+  for(var g=0; g<=4; g++){
+    var v = max*g/4, yy = y(v);
+    svg += '<line x1="'+padL+'" y1="'+yy+'" x2="'+(W-padR)+'" y2="'+yy+'" stroke="#eef1f5"/>';
+    svg += '<text x="'+(padL-8)+'" y="'+(yy+4)+'" text-anchor="end" font-size="10" fill="#6b7280">'+fmt(v)+'</text>';
+  }
+  entries.forEach(function(en,i){
+    var ano=en[0],v=en[1];
+    var x = padL + i*bw + bw*0.15, w = bw*0.7, yy = y(v);
+    svg += '<rect class="bar-grow" style="animation-delay:'+(i*35)+'ms" x="'+x.toFixed(1)+'" y="'+yy.toFixed(1)+
+      '" width="'+w.toFixed(1)+'" height="'+(H-padB-yy).toFixed(1)+'" rx="2" fill="#10b981" data-ano="'+ano+'" data-v="'+v+'"/>';
+    if(i%2===0) svg += '<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-padB+17)+'" text-anchor="middle" font-size="10" fill="#6b7280">'+ano.slice(2)+'</text>';
+  });
+  svg += '<line x1="'+padL+'" y1="'+(H-padB)+'" x2="'+(W-padR)+'" y2="'+(H-padB)+'" stroke="#e5e7eb"/>';
+  svg += '<text x="'+(W-padR)+'" y="'+(y(1666)-8)+'" text-anchor="end" font-size="11" font-weight="600" fill="#047857">2025: maior série da história</text>';
+  document.getElementById('svg-abert').innerHTML = svg;
+
+  var tt = document.getElementById('tt-abert'), box = document.getElementById('chart-abert');
+  var svgEl = document.getElementById('svg-abert');
+  svgEl.addEventListener('mousemove', function(e){
+    if(e.target.tagName==='rect'){
+      var r = e.target.getBoundingClientRect(), b = box.getBoundingClientRect();
+      tt.textContent = e.target.dataset.ano + ' — ' + fmt(+e.target.dataset.v) + ' aberturas';
+      tt.style.left = (r.left - b.left + r.width/2) + 'px';
+      tt.style.top = (r.top - b.top) + 'px';
+      tt.style.opacity = 1;
+    } else tt.style.opacity = 0;
+  });
+  svgEl.addEventListener('mouseleave', function(){ tt.style.opacity=0 });
+})();
+
+/* breakdowns */
+function breakdown(elId, rows){
+  var total = rows.reduce(function(s,r){return s+r[1]},0);
+  var max = Math.max.apply(null, rows.map(function(r){return r[1]}));
+  document.getElementById(elId).innerHTML = rows.map(function(r){
+    var nm=r[0], v=r[1];
+    var pct = 100*v/total, w = 100*v/max;
+    var pcts = pct<0.1 ? '&lt;0,1' : pct.toFixed(1).replace('.',',');
+    return '<div class="row"><span class="bar" style="width:'+w.toFixed(1)+'%"></span>'+
+      '<span class="nm">'+nm+'</span>'+
+      '<span class="vv">'+fmt(v)+' <small>'+pcts+'%</small></span></div>';
+  }).join('');
+}
+breakdown('bd-setor', DATA.setor);
+breakdown('bd-mun', DATA.municipio);
+breakdown('bd-uf', DATA.uf);
+breakdown('bd-porte', DATA.porte);
+
+/* cadeia: fornecedores e clientes */
+var fornecedores=[
+ {n:"F1 · Fábricas de EPS (pós-industrial)",d:"Knauf-Simões Filho; Isoplast-Simões Filho; Isobras-Itatim; Isobahia-SAJ; Iso Conquista",m:"Refugos de corte/moldagem (limpos)",p:"Alta",s:"S-01/S-20/S-21/S-22/S-23"},
+ {n:"F2 · Cooperativas de Feira",d:"Redesol · Ginga Recicla · Artemares · Coobafs",m:"Isopor pós-consumo (coleta seletiva/PEVs)",p:"Alta",s:"S-07/S-08/S-31"},
+ {n:"F3 · Cooperativas de Salvador",d:"CANORE · COOPERBRAVA + demais 16 da LIMPURB",m:"Isopor de PEVs e coleta solidária",p:"Alta",s:"S-09"},
+ {n:"F4 · Varejo/atacarejo",d:"Assaí (2 lojas em Feira) · Atacadão · Magazine Luiza · Casas Bahia · Havan",m:"Embalagens de linha branca e proteção",p:"Média-alta",s:"S-35b/S-10"},
+ {n:"F5 · Indústria de eletrodomésticos",d:"Newmaq · Atlas · Eletrodom. Pinheiro (Feira) · Grupo MK",m:"Embalagem de produto + refugos",p:"Média-alta",s:"S-34/S-24b"},
+ {n:"F6 · Pescados/alimentos",d:"Mercado do Peixe/Feira de São Joaquim (Salvador) · abatedouros em Feira",m:"Caixas térmicas pós-consumo",p:"Média",s:"S-37/S-41"},
+ {n:"F7 · Saúde/fármaco",d:"Hospitais, laboratórios, distribuidoras",m:"Caixas térmicas EPS",p:"Média",s:"S-10"},
+ {n:"F8 · Construção civil",d:"Canteiros de obras (Feira/Salvador/interior)",m:"Refugo de corte de lajotas/blocos",p:"Média",s:"S-25b"},
+ {n:"F9 · Poder público",d:"Sesp-Feira · LIMPURB-Salvador · prefeituras do interior",m:"Fração seletiva",p:"Média",s:"S-08/S-09"},
+ {n:"F10 · Operadores de resíduos (RFB)",d:"LWART · Sustentare · Qualix (Feira)",m:"Fluxos contratados de coleta/tratamento",p:"Média-alta",s:"S-42"},
+ {n:"F11 · E-commerce/logística",d:"CDs e transportadoras",m:"Proteção de encomendas",p:"Média",s:"—"}
+];
+var clientes=[
+ {n:"C1 · Reciclagem nacional de EPS",d:"Termotécnica (Petrolina/PE mais próxima) · Proecologic (SP)",m:"EPS densificado para reprocessar em PS circular",p:"Alta",s:"S-04/S-05/S-15"},
+ {n:"C2 · Transformadores de PS",d:"Molduras, rodapés, solados, cabides, vasos, peças técnicas",m:"Pellets e flakes de PS reciclado (R$ 11–12/kg PSAI)",p:"Média-alta",s:"S-16"},
+ {n:"C3 · Fábricas de EPS com reciclado",d:"Isoplast (blocos T1R) · Knauf",m:"Bloco EPS com % de reciclado",p:"Alta",s:"S-18/S-23"},
+ {n:"C4 · Construção civil regional",d:"Construtoras, lojas de material, lajotecas",m:"Pérolas (R$ 69,24/kg) e lajotas/blocos (R$ 532,70/m³)",p:"Média-alta",s:"S-18"},
+ {n:"C5 · Indústria plástica da região",d:"Realce + 30 transformadores acompanhados pelo Sebrae",m:"Plásticos reciclados (inclui PS)",p:"Alta",s:"S-07/S-24"},
+ {n:"C6 · Entidades gestoras",d:"Certificados de Crédito de Reciclagem (Decreto 11.413)",m:"CCRLR por tonelada comprovada",p:"Emergente",s:"S-13/S-14"},
+ {n:"C7 · Varejo com metas ESG",d:"Atacarejo e eletrodomésticos",m:"Contratos de destinação + créditos",p:"Média",s:"S-10/S-12"},
+ {n:"C8 · Exportação",d:"Mercado europeu de isolamento (precedente Repor)",m:"PS reciclado certificado",p:"Baixa",s:"S-04"}
+];
+function badge(p){
+  var k={'Alta':'b-alta','Média-alta':'b-media','Média':'b-media','Baixa':'b-baixa','Emergente':'b-emerg'}[p]||'b-media';
+  return '<span class="badge '+k+'">'+p+'</span>';
+}
+var filtro='all';
+function renderCadeia(){
+  var pass=function(p){return filtro==='all'||p===filtro};
+  var html=function(arr){return arr.filter(function(x){return pass(x.p)}).map(function(x){
+    return '<div class="item"><b>'+x.n+'</b> '+badge(x.p)+'<span class="why">'+x.d+' · <i>'+x.m+'</i> · '+x.s+'</span></div>';
+  }).join('') || '<div class="item">Nenhum item neste filtro.</div>'};
+  document.getElementById('lista-for').innerHTML=html(fornecedores);
+  document.getElementById('lista-cli').innerHTML=html(clientes);
+}
+document.getElementById('chips-f').addEventListener('click',function(e){
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#chips-f button').forEach(function(b){b.classList.remove('on')});
+  e.target.classList.add('on'); filtro=e.target.dataset.f; renderCadeia();
+});
+renderCadeia();
+
+/* calculadora */
+var ids=['volume','compra','venda','capex','custofixo','frete','perda','ccrlr'];
+function calc(){
+  var vol=+document.getElementById('volume').value||0;
+  var compra=+document.getElementById('compra').value||0;
+  var venda=+document.getElementById('venda').value||0;
+  var capex=+document.getElementById('capex').value||0;
+  var fixo=+document.getElementById('custofixo').value||0;
+  var frete=+document.getElementById('frete').value||0;
+  var perda=(+document.getElementById('perda').value||0)/100;
+  var ccrlr=+document.getElementById('ccrlr').value||0;
+
+  var kg=vol*1000, kgUtil=kg*(1-perda);
+  var receitaMaterial=kgUtil*venda;
+  var custoMaterial=kg*compra;
+  var custoLog=vol*frete;
+  var receitaCred=vol*ccrlr;
+  var receita=receitaMaterial+receitaCred;
+  var custo=custoMaterial+custoLog+fixo;
+  var margem=receita-custo;
+  var pct=receita>0?(margem/receita*100):0;
+  var pb=margem>0?(capex/(margem*12)):Infinity;
+  var money=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0})};
+
+  document.getElementById('resultado').innerHTML=
+    '<div class="r"><span>Receita com material densificado</span><b>'+money(receitaMaterial)+'</b></div>'+
+    '<div class="r"><span>Receita com créditos de reciclagem</span><b>'+money(receitaCred)+'</b></div>'+
+    '<div class="r"><span>(−) Compra do EPS solto</span><b>'+money(-custoMaterial)+'</b></div>'+
+    '<div class="r"><span>(−) Logística + custo fixo</span><b>'+money(-custoLog-fixo)+'</b></div>'+
+    '<div class="r"><span>Resultado mensal</span><b>'+money(margem)+'</b></div>'+
+    '<div class="r"><span>Margem sobre receita</span><b>'+pct.toFixed(1).replace('.',',')+'%</b></div>'+
+    '<div class="r"><span>Payback do CAPEX</span><b>'+(isFinite(pb)?pb.toFixed(1).replace('.',',')+' anos':'não recupera')+'</b></div>';
+
+  var rows=[5,10,15,20,30,40].map(function(v){
+    var k=v*1000,ku=k*(1-perda);
+    return {v:v, m: ku*venda+v*ccrlr-(k*compra+v*frete+fixo)};
+  });
+  var max=Math.max.apply(null,rows.map(function(r){return Math.abs(r.m)}).concat([1]));
+  document.getElementById('sens').innerHTML=rows.map(function(r){
+    var w=Math.min(100,Math.abs(r.m)/max*100);
+    var col=r.m>=0?'#10b981':'#be123c';
+    var lbl = r.v===vol ? ' · atual' : '';
+    return '<div style="display:flex;align-items:center;gap:9px;margin:7px 0">'+
+      '<span style="width:76px;font-size:12.5px;font-weight:600;color:#374151">'+r.v+' t/mês'+lbl+'</span>'+
+      '<div style="flex:1;height:20px;background:#f1f5f9;border-radius:4px;position:relative;overflow:hidden">'+
+      '<span style="position:absolute;left:0;top:0;bottom:0;width:'+w.toFixed(1)+'%;background:'+col+
+      ';border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:12px;color:#fff;font-weight:600">'+
+      money(r.m)+'/mês</span></div></div>';
+  }).join('');
+}
+ids.forEach(function(i){document.getElementById(i).addEventListener('input',calc)});
+calc();
+
+/* fontes */
+var fontes=[
+["S-01","Knauf Isopor — história e fábricas","Setorial","https://www.knauf-isopor.com.br/corporativo/quem-somos/"],
+["S-02","Mundo Isopor — Reciclagem de Isopor: etapas e vantagens","Setorial","https://www.mundoisopor.com.br/sustentabilidade/reciclagem-de-isopor-tudo-sobre-as-etapas-e-vantagens-do-processo"],
+["S-03","Valor/G1 — De vilão a vice-colocado na reciclagem","Jornalística","https://valor.globo.com/empresas/esg/noticia/2022/11/23/de-vilao-a-vice-colocado-na-reciclagem-isopor-volta-a-circular.ghtml"],
+["S-04","Termotécnica — institucional / Reciclar EPS","Setorial","https://www.termotecnica.ind.br/"],
+["S-05","Termotécnica — contato e unidades","Setorial","https://www.termotecnica.ind.br/contato-solucoes-em-eps/"],
+["S-06","Perfil ABIPLAST 2025","Setorial","https://www.abiplast.org.br/wp-content/uploads/2025/10/PERFIL_2025_ABIPLAST_ENGLISH.pdf"],
+["S-06b","ABIPLAST — programa Isopor Amigo","Setorial","https://www.abiplast.org.br/"],
+["S-07","Sebrae BA — cooperativas × indústria em Feira (332 t/mês)","Primária","https://ba.agenciasebrae.com.br/cultura-empreendedora/sebrae-promove-integracao-entre-cooperativas-de-reciclagem-e-industria-para-fortalecer-economia-circular/"],
+["S-08","Prefeitura de Feira — cooperativas reciclaram 60 t em 2025","Primária","https://www.feiradesantana.ba.gov.br/secom/noticias.asp?idn=42432"],
+["S-09","LIMPURB — cooperativas cadastradas em Salvador","Primária","https://limpurb.salvador.ba.gov.br/wp-content/uploads/2023/05/RELACAO-DAS-COOPERATIVAS-Versao-site-16.05.2023.pdf"],
+["S-09b","SciELO/CAMA — perfil do catador em Salvador","Acadêmica","https://www.scielo.br/j/inter/a/HSNPR9HMQD8H7VScVbq6FRj/"],
+["S-10","Decreto 12.688/2025 — logística reversa de embalagens plásticas","Primária/norma","https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/D12688.htm"],
+["S-11","ABIPET — análise do Decreto 12.688","Setorial","https://abipet.org.br/noticias"],
+["S-12","Packaging Journal — mandatory take-back (Brazil)","Setorial","https://packaging-journal.de/en/brazil-introduces-mandatory-take-back-systems-for-plastic-packaging"],
+["S-13","SINIR — Decreto 11.413/2023 (Créditos de Reciclagem)","Primária/norma","https://sinir.gov.br/informacoes/legislacao"],
+["S-14","SciELO — modalities of reverse logistics (Dec. 11.413)","Acadêmica","https://scielo.br/j/esa/a/8Rxv4H68LHWwWbpTHby9BPq"],
+["S-15","AECweb/Isorecort — reciclagem do EPS (Proecologic)","Setorial","https://www.isorecort.com.br/reciclagem-faz-do-eps-uma-materia-prima-circular/"],
+["S-16","Plástico Magazine — resinas recicladas (PSAI R$ 11–12/kg)","Setorial","https://www.plastico.com.br/pressao-ambiental-valoriza-mais-as-resinas-recicladas-economia-circular/"],
+["S-17","Reso Ambiental — PS moído multicor (R$ 2,20/kg)","Mercado","https://resoambiental.com/portfolio-item/vende-se-poliestireno-ps-moido-multicor/"],
+["S-18","SINAPI Pro — insumos EPS Bahia (bloco 2F; pérolas)","Primária","https://sinapipro.com.br/precos/insumo/39995"],
+["S-19","CEMPRE — IPR índices de recicláveis","Setorial","https://cempre.org.br/indice-de-reciclaveis/"],
+["S-20","Indústria News — Isobras amplia fábrica (R$ 70 mi)","Jornalística","https://www.industrianews.com.br/2025/12/isobras-amplia-fabrica-e-abre-500-novos-empregos/"],
+["S-21","Isobahia — institucional","Setorial","https://isobahia.com/"],
+["S-22","CNPJ.biz — Iso Conquista (EPS)","Cadastro","https://cnpj.biz/22240539000150"],
+["S-23","Isoplast — institucional","Setorial","https://isoplast.ind.br/"],
+["S-24","Uma Só Planeta — Realce Indústria (300 t recicladas)","Jornalística","https://umsoplaneta.globo.com/financas/negocios/noticia/2026/07/14/como-uma-fabrica-de-plastico-na-bahia-faturou-r-18-milhao-transformando-lixo-em-material-de-construcao.ghtml"],
+["S-24b","Bahia Economica — Grupo MK (Mondial/AIWA)","Jornalística","https://bahiaconomica.com.br/wp/2025/07/14/grupo-mk-anuncia-nova-fabrica-na-bahia-com-investimento-de-r-457-milhoes-e-geracao-de-1-400-empregos/"],
+["S-25","SDE-BA — PROIND (Decreto 18.802/2018)","Primária","https://www.ba.gov.br/sde/proind"],
+["S-25b","Mundo Isopor/ABRAPEX — uso do EPS na construção","Setorial","https://www.mundoisopor.com.br/"],
+["S-26","SEFAZ-BA — DESENVOLVE (Lei 7.980/2001)","Primária","http://mbusca.sefaz.ba.gov.br/DITRI/normas_complementares/decretos/decreto_2002_8205_desenvolve.pdf"],
+["S-27","BNDES — Tudo na Circularidade","Primária","https://www.bndes.gov.br/wps/portal/site/home/onde-atuamos/social/tudo-na-circularidade"],
+["S-28","BNB — Finor","Primária","https://www.bnb.gov.br/finor"],
+["S-29","JGB — Feira como coração logístico (2.209 indústrias)","Jornalística","https://jornalgrandebahia.com.br/2025/10/feira-de-santana-se-firma-como-coracao-logistico-e-motor-economico-da-bahia"],
+["S-29b","Prefeitura de Feira — A Cidade","Primária","https://www.feiradesantana.ba.gov.br/micareta/acidade.asp"],
+["S-30","IBGE Censo 2022 (populações)","Primária","https://agenciadenoticias.ibge.gov.br/"],
+["S-31","Governo BA/SDR — nova unidade de coleta em Feira (Artemares)","Primária","https://www.ba.gov.br/sdr/noticias/2023-01-19/catadores-de-materiais-reciclaveis-de-feira-de-santana-vao-contar-com-nova"],
+["S-32","CAR/BA — Rede de Esperança (ARTEMARES)","Primária","https://dhg1h5j42swfq.cloudfront.net/2024/06/28105442/embasa-1.pdf"],
+["S-32b","CAMA — Micareta Sustentável (Feira 2024)","ONG","https://cama.org.br/projeto-inedito-micareta-sustentavel-e-solidaria-promove-inclusao-de-catadoresas-na-micareta-de-feira-de-santana/"],
+["S-33","MDIC — Plano Nacional de Economia Circular 2025–2034","Primária","https://www.gov.br/mdic/pt-br/assuntos/enec/plano-nacional/plano-nacional-de-economia-circular-2025-2013-2034_versao_26-05-2025.pdf"],
+["S-33b","Gov.br — apoio financeiro a projetos de coleta/reciclagem","Primária","https://www.gov.br/pt-br/servicos/obter-apoio-financeiro-para-implementacao-de-projetos-de-coleta-e-reciclagem-de-materiais"],
+["S-34","Bahia Empresas/Cirtrox — eletrodomésticos em Feira","Cadastro","https://bahiaempresas.com/"],
+["S-35","RUNI — compactador SK120 (ficha técnica)","Fabricante","https://www.compactor-runi.com/"],
+["S-35b","SmartScraper — supermercados na Bahia (Assaí em Feira)","Dados","https://rentechdigital.com/smartscraper/business-report-details/brazil/list-of-supermarkets-in-bahia"],
+["S-36","RecycleTech — densificador XT70","Fabricante","https://recycletechno.com/styrofoam-densifiers/plastic-foam-densifier-xt-70"],
+["S-36b","Mercado — faixas de preço de EPS (solto/compactado)","Mercado (baixa confiança)","referência pública de mercado"],
+["S-37","CidadeBaixa — Mercado do Peixe / Feira de São Joaquim","Jornalística","https://www.cidadebaixa.com/mercado-do-peixe/"],
+["S-41","ABRAFRIGO — estabelecimentos SIF na BA","Setorial","https://www.abrafrigo.com.br/"],
+["S-42","Base dos Dados/BigQuery — br_me_cnpj (CNPJ da Receita Federal), partição 11/01/2026 — contagens, núcleo Feira 324, 335 recuperadores, aberturas +270%","Primária (oficial)","https://basedosdados.org.br | https://dadosabertos.rfb.gov.br/CNPJ/"],
+["S-43","Scripts de extração reproduzíveis (rfb/extrair_rfb.py; rfb/posprocessar.py) — dry-run de custo, pruning de partição","Primária (método)","pasta rfb/ desta pesquisa"]
+];
+function renderFontes(filtro){
+  var f=(filtro||'').toLowerCase();
+  var rows=fontes.filter(function(x){return x.join(' ').toLowerCase().indexOf(f)>=0}).map(function(x){
+    var url=x[3];
+    var link=/^https?:/.test(url)?'<a href="'+url+'" target="_blank" rel="noopener">'+url+'</a>':url;
+    return '<tr><td><b>'+x[0]+'</b></td><td>'+x[1]+'</td><td>'+x[2]+'</td><td style="word-break:break-all">'+link+'</td></tr>';
+  }).join('');
+  document.querySelector('#tblfontes tbody').innerHTML=rows||'<tr><td colspan="4">Nenhuma fonte encontrada.</td></tr>';
+}
+document.getElementById('busca').addEventListener('input',function(e){renderFontes(e.target.value)});
+renderFontes();
+</script>
+</body>
+</html>
