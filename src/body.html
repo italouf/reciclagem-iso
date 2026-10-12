@@ -1,0 +1,485 @@
+<a class="skip" href="#conteudo">Pular para o conteúdo principal</a>
+
+<div class="shell">
+  <header class="topbar no-print">
+    <div class="brand">
+      <span class="brand__mark">EPS · Bahia</span>
+      <span class="brand__sub">Inteligência de mercado — reciclagem de poliestireno expandido</span>
+    </div>
+    <div class="topbar__tools">
+      <span class="badge badge--neutro" title="Datas de corte de cada base de dados">Corte out/2026 · RFB 11/01/2026 · SINAPI ago/2026</span>
+      <button type="button" class="chip" id="btn-imprimir">Imprimir / Salvar em PDF</button>
+    </div>
+  </header>
+
+  <div class="shell__body">
+    <nav class="nav no-print" aria-label="Áreas do painel">
+      <ul class="nav__list" id="nav-list"></ul>
+    </nav>
+
+    <main class="main" id="conteudo">
+
+      <div class="print-head print-only">
+        <p class="print-head__t">Mercado de reciclagem de EPS na Bahia — painel de decisão</p>
+        <p>Inteligência de mercado com foco em Feira de Santana · corte das informações: outubro de 2026 · evidência cadastral: base oficial de CNPJ da Receita Federal, partição de 11/01/2026</p>
+        <p id="print-contexto"></p>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- 1. VISÃO EXECUTIVA                                                  -->
+      <!-- ================================================================= -->
+      <section class="section is-active" id="area-visao" aria-labelledby="h-visao" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">1 · Visão executiva</p>
+          <h1 class="section__title" id="h-visao">Validar fornecimento e compradores antes de liberar o investimento no hub de densificação em Feira de Santana</h1>
+          <p class="section__q">A oportunidade investigada é a captura da etapa de densificação de EPS na Bahia. A pesquisa recomenda <strong>avançar agora com validação comercial a custo quase zero e adiar a decisão de CAPEX</strong>. Os três vetores da tese — demanda regulada, oferta regional estruturada e ausência de operador especializado no estado — estão documentados. O que falta é a comprovação comercial.</p>
+          <div class="section__meta">
+            <span class="badge badge--neutro">Recorte: Bahia · foco em Feira de Santana e região</span>
+            <span class="badge badge--neutro">Corte: outubro de 2026</span>
+            <span class="ev ev--estimativa" data-mark="⚠">Estimativas de mercado por extrapolação</span>
+          </div>
+        </div>
+
+        <h2 class="blk">Os três fundamentos da tese</h2>
+        <div class="cols cols--3" id="fundamentos"></div>
+
+        <h2 class="blk">Indicadores que sustentam a decisão</h2>
+        <p class="blk__lede">Quatro indicadores, escolhidos por contribuição direta à decisão. Cada um preserva escopo, unidade, período e natureza da evidência.</p>
+        <div class="kpis" id="kpis-visao"></div>
+        <p class="u-meta u-mt3">Natureza da evidência:
+          <span class="ev ev--publicado" data-mark="">Dado publicado</span>
+          <span class="ev ev--cadastral" data-mark="">Dado cadastral oficial</span>
+          <span class="ev ev--estimativa" data-mark="⚠">Estimativa da pesquisa</span>
+          <span class="ev ev--declaracao" data-mark="">Declaração empresarial</span>
+        </p>
+
+        <h2 class="blk">As três condições que precisam ser verificadas</h2>
+        <p class="blk__lede">Nenhuma delas está confirmada. A pesquisa as define como <em>gates</em>: se falharem, a consequência é definida.</p>
+        <div class="cols cols--3" id="gates-visao"></div>
+        <div class="note note--info u-mt4" id="nota-prazos"></div>
+
+        <h2 class="blk">Os três riscos que quebram a tese</h2>
+        <div class="cols cols--3" id="riscos-visao"></div>
+
+        <h2 class="blk">Próximo passo</h2>
+        <div class="panel">
+          <p class="panel__q">Para levar esta recomendação a uma decisão de liberação de capital:</p>
+          <ol>
+            <li><strong>Contratar</strong> volume de EPS pós-industrial com as fábricas da RM de Salvador e das cooperativas de Feira e Salvador.</li>
+            <li><strong>Fechar preço</strong> de bloco densificado com ao menos um destinador de feedstock.</li>
+            <li><strong>Medir por 90 dias</strong> o volume real e a qualidade da fração de EPS.</li>
+            <li><strong>Só então</strong> dimensionar capacidade e orçar o CAPEX do hub.</li>
+          </ol>
+          <p class="u-meta u-mt3">A simulação em <a href="#area-viabilidade">Viabilidade</a> permite testar as condições econômicas antes e durante essa validação. Ela não substitui cotação.</p>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 2. MERCADO E EVIDÊNCIAS                                             -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-mercado" aria-labelledby="h-mercado" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">2 · Mercado e evidências</p>
+          <h2 class="section__title" id="h-mercado">A dimensão do mercado é estimada; a estrutura da oferta é contada</h2>Os números de fluxo de EPS na Bahia são <strong>extrapolação</strong>. Os números de estrutura da oferta e da demanda industrial são <strong>contagens e declarações verificáveis</strong>. Esta área separa as duas naturezas.</p>
+        </div>
+
+        <div class="panel no-print">
+          <div class="filters">
+            <div class="field">
+              <span class="field__l" id="lbl-cen">Cenário de mercado</span>
+              <div class="chips" role="group" aria-labelledby="lbl-cen" id="chips-cenario"></div>
+            </div>
+          </div>
+          <p class="u-micro">Este seletor altera <strong>somente as estimativas de mercado</strong> desta área. Ele <strong>não</strong> altera a calculadora de viabilidade, que tem premissas próprias e editáveis.</p>
+        </div>
+
+        <h2 class="blk">Cenários de consumo e geração de EPS na Bahia</h2>
+        <div class="figure" id="fig-cenarios"></div>
+
+        <h2 class="blk">Comparação de escopos — não são uma razão</h2>
+        <p class="blk__lede">Estes volumes aparecem juntos na pesquisa, mas <strong>medem coisas diferentes</strong>: materiais distintos, populações distintas, geografias distintas e bases de medição distintas. Não foram convertidos em uma razão porque a divisão não é homogênea.</p>
+        <div class="cols cols--2" id="escopos"></div>
+        <div class="divergence">
+          <p class="divergence__t">⚠ Comparação preservada da versão anterior, não utilizada como destaque</p>
+          <p class="u-meta">A versão anterior dividia a demanda potencial anual de Feira (3.984 t/ano, plásticos de ~20 tipos, 10 de 30 indústrias) pelos 60 t/ano de todos os materiais reciclados pelas cooperativas do município em 2025, e apresentava o resultado como <strong>“~66×”</strong>. A aritmética é correta e a <strong>comparação não é homogênea</strong>: difere o material, a geografia, a população observada e a base de medição. O mesmo levantamento registra Artemares com mais de 60 t/mês (plástico, papel e metal somados) e a CCRBA com cerca de 210 t/mês. Por isso a razão foi removida do destaque executivo e os indicadores passaram a ser apresentados separadamente, com seus escopos.</p>
+        </div>
+
+        <h2 class="blk">Demanda industrial declarada — o que a pesquisa mediu de fato</h2>
+        <div class="cols cols--2">
+          <div class="panel">
+            <h3 class="blk">Medido</h3>
+            <p class="u-meta"><strong>332 t/mês</strong> de plásticos recicláveis demandados por <strong>10 das 30 indústrias</strong> acompanhadas pelo Sebrae em Feira e região, em cerca de <strong>20 tipos de material</strong>. Levantamento de agosto de 2026, encontro que reuniu 8 cooperativas baianas. <span class="src" data-src="S-07">S-07</span></p>
+            <h3 class="blk u-mt4">Derivado por multiplicação linear</h3>
+            <p class="u-meta"><strong>3.984 t/ano</strong> resulta de 332 × 12. É uma <strong>anualização</strong>, não um fluxo anual medido. <span class="src" data-src="S-07">S-07</span></p>
+          </div>
+          <div class="panel">
+            <h3 class="blk">Extrapolado para PS/EPS</h3>
+            <p class="u-meta">Aplicando a participação de PS/EPS no processamento nacional de plásticos (<strong>12,8%</strong>) à demanda anual acima, obtem-se <strong>cerca de 400 a 510 t/ano</strong> de demanda indireta por PS/EPS reciclado.</p>
+            <p class="u-meta u-mt2"><span class="ev ev--estimativa" data-mark="⚠">Estimativa da pesquisa</span></p>
+            <p class="u-meta u-mt2">Este passo aplica uma participação <strong>nacional e agregada por material</strong> a uma demanda <strong>regional declarada por tipo de material específico</strong>. Não é medida de demanda de EPS na Bahia e precisa de validação setorial antes de virar premissa de contrato.</p>
+          </div>
+        </div>
+
+        <h2 class="blk">Estrutura da cadeia — contagens oficiais</h2>
+        <p class="blk__lede">Base oficial de CNPJ da Receita Federal, partição de <strong>11/01/2026</strong>, situação ATIVA, <strong>19 subclasses CNAE</strong> de produção de plásticos, coleta, recuperação e comércio de sucata. Extração reproduzível pelos scripts da pasta <code>rfb/</code>. <span class="src" data-src="S-42">S-42</span> <span class="src" data-src="S-43">S-43</span></p>
+        <div class="kpis" id="kpis-cadastral"></div>
+
+        <h2 class="blk">Aberturas na cadeia baiana, por ano de início de atividade</h2>
+        <div class="figure" id="fig-aberturas"></div>
+
+        <h2 class="blk">Distribuição por setor e por porte</h2>
+        <div class="cols cols--2">
+          <div class="figure" id="fig-setores"></div>
+          <div class="figure" id="fig-porte"></div>
+        </div>
+
+        <h2 class="blk">Distribuição territorial</h2>
+        <div class="cols cols--2">
+          <div class="figure" id="fig-municipios"></div>
+          <div class="figure" id="fig-uf"></div>
+        </div>
+        <div class="note note--warn u-mt4" id="nota-reconciliacao"></div>
+
+        <h2 class="blk">Operadores especializados em EPS</h2>
+        <div class="panel">
+          <p><strong>Não foram identificados operadores especializados em EPS no levantamento realizado.</strong></p>
+          <p class="u-meta u-mt2">Essa frase é deliberadamente restrita. Ela significa que a pesquisa não encontrou operador dedicado — e nada além disso. Três limites explicam por que a ausência não pode ser lida como inexistência:</p>
+          <ul class="u-meta u-mt2">
+            <li><strong>CNAE não nomeia material.</strong> O código 38.32-7 é “recuperação de materiais plásticos” e não isola EPS. Um operador especializado em EPS pode estar classificado em outro código ou em código nenhum aplicável.</li>
+            <li><strong>A base mede apenas o formal.</strong> Cooperativas informalizadas e catadores avulsos ficam de fora.</li>
+            <li><strong>A cobertura é uma partição trimestral.</strong> Todos os números valem para 11/01/2026, não para hoje.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 3. TERRITÓRIO E LOGÍSTICA                                           -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-territorio" aria-labelledby="h-territorio" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">3 · Território e logística</p>
+          <h2 class="section__title" id="h-territorio">Feira de Santana concentra entroncamento, oferta organizada e demanda industrial próxima</h2>A escolha de Feira de Santana não decorre de uma análise de rota. Decorre de três fatos documentados: entroncamento rodoviário, cooperativas já organizadas no município e proximidade de um parque industrial com demanda declarada de recicláveis.</p>
+        </div>
+
+        <h2 class="blk">Por que Feira de Santana</h2>
+        <div class="cols cols--2">
+          <div class="panel">
+            <h3 class="blk">Fundamentos do município</h3>
+            <ul class="u-meta">
+              <li><strong>616.279 habitantes</strong> (Censo 2022) — 2ª maior cidade da Bahia, maior do interior nordestino <span class="src" data-src="S-30">S-30</span></li>
+              <li><strong>PIB municipal de cerca de R$ 11,96 bilhões</strong> — 3º da Bahia, 69º do Brasil <span class="src" data-src="S-29">S-29</span></li>
+              <li><strong>2.209 indústrias</strong> em operação · cerca de 25% do PIB local · 35 mil empregos diretos <span class="src" data-src="S-29">S-29</span></li>
+              <li><strong>BR-116, BR-101 e BR-324</strong> — entroncamento rodoviário; 107 km de Salvador pela BR-324 <span class="src" data-src="S-29">S-29</span> <span class="src" data-src="S-29b">S-29b</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="blk">Por que a etapa de densificação define o negócio</h3>
+            <p class="u-meta">O EPS é <strong>98% ar</strong>. A densidade aparente vai de 10 a 32 kg/m³, contra cerca de 900 a 1.100 kg/m³ de um plástico denso. <span class="src" data-src="S-02">S-02</span></p>
+            <div class="figure u-mt3" id="fig-densificacao"></div>
+            <p class="u-micro u-mt2">Referência ilustrativa da pesquisa setorial. <strong>Não é capacidade garantida da operação proposta.</strong> O dimensionamento real é verificado na calculadora.</p>
+          </div>
+        </div>
+
+        <h2 class="blk">Diagrama territorial dos atores citados na pesquisa</h2>
+        <div class="note note--warn u-mt3" style="margin-bottom:var(--s4)"><strong>Diagrama esquemático.</strong> Os grupos abaixo refletem a organização territorial descrita na pesquisa, não posições geográficas verificadas. <strong>Não há distâncias, rotas nem coordenadas neste diagrama</strong>, porque as fontes consultadas não fornecem geometria confiável.</div>
+        <div class="polos" id="polos"></div>
+
+        <h2 class="blk">Economia do transporte</h2>
+        <div class="panel">
+          <p class="u-meta">A consequência prática é direta: <strong>quem transporta EPS solto paga frete de ar</strong>. A pesquisa setorial registra, como exemplo, que um caminhão de 70 m³ leva entre 100 e 400 kg de EPS solto contra cerca de 6 toneladas do mesmo material já densificado. <span class="src" data-src="S-15">S-15</span></p>
+          <p class="u-meta u-mt2">Densificar na origem converte um problema de volume em um problema de massa, que é o que o modelo econômico da calculadora precifica.</p>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 4. CADEIA E PARCEIROS                                              -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-cadeia" aria-labelledby="h-cadeia" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">4 · Cadeia e parceiros</p>
+          <h2 class="section__title" id="h-cadeia">Com quem estruturar a oferta e a venda</h2>O mapa abaixo é <strong>qualitativo</strong>: não há volumes medidos entre os elos, e por isso não há diagrama de fluxo proporcional. O detalhamento quantitativo está nos filtros e na tabela de atores.</p>
+        </div>
+
+        <h2 class="blk">A cadeia proposta</h2>
+        <div class="chain" id="cadeia-fluxo"></div>
+
+        <h2 class="blk">Atores mapeados</h2>
+        <p class="blk__lede"><strong>“Prontidão” é uma classificação da pesquisa.</strong> Não significa contrato assinado, disponibilidade confirmada, intenção de compra nem compromisso de fornecedor. Cada ator traz sua limitação e a próxima validação comercial sugerida.</p>
+        <div class="panel no-print">
+          <div class="filters">
+            <div class="field" style="flex:1 1 220px">
+              <label class="field__l" for="busca-atores">Buscar por nome</label>
+              <input type="search" class="input" id="busca-atores" placeholder="Ex.: Artemares, Isobras, Termotécnica" autocomplete="off">
+            </div>
+            <div class="field">
+              <span class="field__l" id="lbl-papel">Papel na cadeia</span>
+              <div class="chips" role="group" aria-labelledby="lbl-papel" id="f-papel"></div>
+            </div>
+            <div class="field">
+              <span class="field__l" id="lbl-regiao">Município ou região</span>
+              <div class="chips" role="group" aria-labelledby="lbl-regiao" id="f-regiao"></div>
+            </div>
+            <div class="field">
+              <span class="field__l" id="lbl-pront">Prontidão atribuída pela pesquisa</span>
+              <div class="chips" role="group" aria-labelledby="lbl-pront" id="f-pront"></div>
+            </div>
+          </div>
+          <p class="u-meta" id="resumo-actors" role="status" aria-live="polite"></p>
+        </div>
+        <div class="tablewrap">
+          <table class="actors" id="tab-actors">
+            <caption class="sr-only">Atores mapeados pela pesquisa, com papel, localização, material, prontidão e fontes</caption>
+            <thead>
+              <tr>
+                <th scope="col">ID</th><th scope="col">Ator</th><th scope="col">Papel</th>
+                <th scope="col">Localização</th><th scope="col">Material ou produto</th>
+                <th scope="col">Prontidão</th><th scope="col">Evidência</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="scroll-hint no-print">→ A tabela rola horizontalmente. Arraste ou use as setas do teclado.</p>
+        <div id="detalhe-ator"></div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 5. VIABILIDADE                                                      -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-viabilidade" aria-labelledby="h-viabilidade" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">5 · Viabilidade</p>
+          <h2 class="section__title" id="h-viabilidade">Em quais condições a operação se sustenta</h2>Modelo <strong>operacional estimado e simplificado</strong>. Não é lucro líquido, fluxo de caixa completo nem EBITDA auditado. As premissas são editáveis e os erros são exibidos junto ao campo, sem produzir resultado.</p>
+        </div>
+
+        <div class="panel no-print u-mt4">
+          <div class="filters">
+            <div class="field">
+              <span class="field__l" id="lbl-preset">Conjunto de premissas</span>
+              <div class="chips" role="group" aria-labelledby="lbl-preset" id="chips-preset"></div>
+            </div>
+          </div>
+          <p class="u-micro" id="preset-origem"></p>
+        </div>
+
+        <div class="calc u-mt5">
+          <div>
+            <fieldset class="calc__group" style="border:0;padding:0;margin:0">
+              <legend class="calc__legend">Premissas operacionais</legend>
+              <div id="g-operacional"></div>
+            </fieldset>
+            <fieldset class="calc__group" style="border:0;padding:0;margin:0">
+              <legend class="calc__legend">Premissas econômicas</legend>
+              <div id="g-economico"></div>
+            </fieldset>
+            <fieldset class="calc__group" style="border:0;padding:0;margin:0">
+              <legend class="calc__legend">Capacidade instalada</legend>
+              <div id="g-capacidade"></div>
+            </fieldset>
+            <fieldset class="calc__group" style="border:0;padding:0;margin:0">
+              <legend class="calc__legend">Créditos de reciclagem <span class="u-micro" style="font-weight:400">(hipótese opcional, desligada por padrão)</span></legend>
+              <label class="check" for="chk-credito" style="margin-bottom:var(--s3)">
+                <input type="checkbox" id="chk-credito">
+                <span>Considerar receita de créditos de reciclagem (CCRLR) na simulação</span>
+              </label>
+              <div id="g-credito"></div>
+              <p class="u-micro u-mt2">Créditos de reciclagem dependem de massa comprovada perante entidade gestora homologada. Não são receita garantida e não substituem a venda do material.</p>
+            </fieldset>
+          </div>
+
+          <div>
+            <div class="results" id="resultados" aria-live="polite"></div>
+            <div class="u-mt4" id="capacidade-aviso"></div>
+            <div class="figure u-mt4" id="fig-waterfall"></div>
+            <div class="figure u-mt4" id="fig-sens-volume"></div>
+            <div class="figure u-mt4" id="fig-sens-preco"></div>
+            <div class="panel u-mt4">
+              <h3 class="blk" style="margin-top:0">O que este modelo não inclui</h3>
+              <ul class="u-meta" id="nao-modelados"></ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="blk">Comparativo entre cenários</h2>
+        <p class="blk__lede">Cada linha recalcula o modelo com um conjunto de premissas completo. Nenhuma linha herda a outra.</p>
+        <div class="tablewrap">
+          <table id="tab-cenarios-calc">
+            <caption>Cenários de preço e escala, com a mesma fórmula do modelo principal</caption>
+            <thead>
+              <tr><th scope="col">Cenário</th><th scope="col">Volume</th><th scope="col">Compra</th><th scope="col">Venda</th>
+              <th scope="col" class="num">Resultado mensal</th><th scope="col" class="num">Margem</th>
+              <th scope="col" class="num">Payback</th><th scope="col">Capacidade necessária</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="scroll-hint no-print">→ A tabela rola horizontalmente.</p>
+        <div class="note note--warn u-mt4">As faixas de preço usadas como premissa (<strong>R$ 0,30 a 1,00/kg</strong> para EPS solto e <strong>R$ 1,50 a 2,80/kg</strong> para bloco densificado) são <strong>triangulações sem índice oficial para a Bahia</strong>. O índice de recicláveis do CEMPRE cobre apenas MG, PR e RS. <span class="src" data-src="S-19">S-19</span> <span class="src" data-src="S-36b">S-36b</span> Trate qualquer resultado como <strong>sensibilidade, não projeção</strong>, e feche cotações antes de decidir.</div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 6. PLANO E RISCOS                                                   -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-plano" aria-labelledby="h-plano" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">6 · Plano e riscos</p>
+          <h2 class="section__title" id="h-plano">Como validar e avançar, e o que pode travar o plano</h2>Quatro fases, três gates, onze trade-offs. Os <em>gates</em> iniciam <strong>não verificados</strong>: a pesquisa não contém evidência de cumprimento, e o painel não infere progresso.</p>
+        </div>
+
+        <h2 class="blk">Gates de decisão</h2>
+        <div class="cols cols--3" id="gates-plano"></div>
+        <div class="note note--info u-mt4" id="nota-prazos2"></div>
+
+        <div class="panel u-mt4 no-print">
+          <h3 class="blk" style="margin-top:0">Acompanhamento local</h3>
+          <p class="u-meta">Este checklist é <strong>acompanhamento local do usuário</strong>. Ele não é preenchido pelo painel, não reflete estado do negócio e <strong>não é salvo</strong> entre sessões. Nenhum item aparece como concluído por padrão.</p>
+          <div id="checklist"></div>
+        </div>
+
+        <h2 class="blk">Roteiro em quatro fases</h2>
+        <div class="cols cols--2" id="fases"></div>
+
+        <h2 class="blk">Trade-offs e riscos</h2>
+        <div class="tablewrap">
+          <table id="tab-tradeoffs">
+            <caption>Trade-offs identificados pela pesquisa e a mitigação proposta em cada caso</caption>
+            <thead><tr><th scope="col" style="width:52px">#</th><th scope="col">Trade-off</th><th scope="col">Mitigação proposta</th><th scope="col">Fonte</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h2 class="blk">Contexto regulatório</h2>
+        <div class="tablewrap">
+          <table id="tab-regulatorio">
+            <caption>Normas que sustentam a demanda por material reciclado</caption>
+            <thead><tr><th scope="col">Norma</th><th scope="col">Conteúdo</th><th scope="col">Efeito no negócio</th><th scope="col">Fonte</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h2 class="blk">Incentivos declarados</h2>
+        <p class="blk__lede">Instrumentos citados pela pesquisa. <strong>Nenhum foi confirmado juridicamente nesta revisão</strong>: os itens abaixo são contexto declarado pelas fontes, não parecer.</p>
+        <div class="tablewrap">
+          <table id="tab-incentivos">
+            <caption>Incentivos mencionados nas fontes, com a condição declarada</caption>
+            <thead><tr><th scope="col">Instrumento</th><th scope="col">O que oferece</th><th scope="col">Condição declarada</th><th scope="col">Janela</th><th scope="col">Fonte</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h2 class="blk">História setorial</h2>
+        <p class="blk__lede">Contexto secundário, preservado da seção <em>Roadmap</em> da versão anterior.</p>
+        <div class="timeline" id="timeline"></div>
+
+        <h2 class="blk">Síntese do recorte de Feira de Santana</h2>
+        <div class="cols cols--2">
+          <div class="panel panel--sunken">
+            <h3 class="blk" style="margin-top:0">Forças</h3>
+            <p class="u-meta">Entroncamento rodoviário fora do eixo Sudeste · cooperativas organizadas no município · demanda industrial declarada próxima · incentivos estaduais com CNAE do grupo 22 · case de transformadora com alto teor de reciclado na região · 324 estabelecimentos do núcleo na base cadastral</p>
+            <h3 class="blk">Oportunidades</h3>
+            <p class="u-meta">Logística reversa obrigatória com metas crescentes até 2040 · certificados de reciclagem como fonte de receita · conteúdo reciclado obrigatório a partir de 2026 · fábricas de EPS na Bahia como fornecedoras · crescimento de 270% nas aberturas em 15 anos · interiorização industrial do estado</p>
+          </div>
+          <div class="panel panel--sunken">
+            <h3 class="blk" style="margin-top:0">Fraquezas</h3>
+            <p class="u-meta">Nenhum operador de EPS identificado no levantamento · coleta seletiva com um ano de operação · sem índice regional de preço de recicláveis · escala inicial pequena · cadeia predominantemente de micro e pequena empresa</p>
+            <h3 class="blk">Ameaças</h3>
+            <p class="u-meta">Preço do PS virgem acompanha o petróleo · concentração da compra de feedstock em poucos operadores nacionais · contaminação do pós-consumo · volatilidade cambial no maquinário importado · 26,4% de taxa histórica de baixa no setor</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 7. FONTES E MÉTODO                                                  -->
+      <!-- ================================================================= -->
+      <section class="section" id="area-fontes" aria-labelledby="h-fontes" tabindex="-1">
+        <div class="section__head">
+          <p class="section__kicker">7 · Fontes e método</p>
+          <h2 class="section__title" id="h-fontes">De onde vem cada afirmação</h2>Cada afirmação quantitativa do painel carrega um identificador <span class="src" style="border:0">S-nn</span> que leva ao registro correspondente. Toda referência traz título, tipo, data e o que sustenta.</p>
+        </div>
+
+        <h2 class="blk">Catálogo de fontes</h2>
+        <div class="panel no-print">
+          <div class="filters">
+            <div class="field" style="flex:1 1 240px">
+              <label class="field__l" for="busca-fontes">Buscar fontes</label>
+              <input type="search" class="input" id="busca-fontes" placeholder="Ex.: S-07, recycle, decreto, SINAPI" autocomplete="off">
+            </div>
+            <div class="field" style="flex:2 1 320px">
+              <span class="field__l" id="lbl-tipo">Tipo de fonte</span>
+              <div class="chips" role="group" aria-labelledby="lbl-tipo" id="f-tipo"></div>
+            </div>
+          </div>
+          <p class="u-meta" id="resumo-fontes" role="status" aria-live="polite"></p>
+        </div>
+        <div class="tablewrap">
+          <table id="tab-fontes">
+            <caption>Referências da pesquisa. Registros sem URL são apresentados como material não disponibilizado, sem link.</caption>
+            <thead>
+              <tr><th scope="col" style="width:64px">ID</th><th scope="col">Fonte</th><th scope="col" style="width:130px">Tipo</th>
+              <th scope="col" style="width:96px">Data</th><th scope="col">O que sustenta</th><th scope="col">Acesso</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="scroll-hint no-print">→ A tabela rola horizontalmente.</p>
+
+        <h2 class="blk">Método e limitações</h2>
+        <div class="cols cols--2">
+          <div class="panel">
+            <h3 class="blk" style="margin-top:0">Como os dados foram obtidos</h3>
+            <ul class="u-meta">
+              <li><strong>Contagens cadastrais</strong> — extração da base oficial de CNPJ da Receita Federal, partição de 11/01/2026, situação ATIVA, 19 subclasses CNAE. Scripts reproduzíveis na pasta <code>rfb/</code>. <span class="src" data-src="S-42">S-42</span> <span class="src" data-src="S-43">S-43</span></li>
+              <li><strong>Dimensionamento de mercado</strong> — extrapolação por participação populacional e por PIB sobre a produção nacional, com cenários. Não há estudo público dimensionando EPS exclusivamente para a Bahia.</li>
+              <li><strong>Demanda industrial</strong> — declaração de 10 de 30 indústrias acompanhadas pelo Sebrae, em levantamento de agosto de 2026.</li>
+              <li><strong>Preços</strong> — triangulação de referências nacionais, sem índice oficial para a Bahia.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="blk" style="margin-top:0">Limitações que atravessam o painel</h3>
+            <ul class="u-meta">
+              <li>CNAE não identifica material: o agregado de plásticos inclui EPS e não o isola.</li>
+              <li>A base cadastral mede apenas o formal; informalidade fica de fora.</li>
+              <li>Contagens são de uma partição trimestral e envelhecem.</li>
+              <li>Capital social não é faturamento nemDemonstra capacidade produtiva.</li>
+              <li>Estabelecimentos não são empresas: o mesmo CNPJ pode ter várias unidades, e o mesmo grupo pode ter vários CNPJs.</li>
+              <li>Dados corporativos são declarados pelas próprias empresas e não foram auditados.</li>
+              <li>Não existe índice de preço de recicláveis que cubra a Bahia.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="blk">Divergências registradas entre fontes</h2>
+        <p class="blk__lede">Onde os arquivos divergem, a decisão adotada está registrada. Nenhum número foi escolhido silenciosamente por conveniência narrativa.</p>
+        <div class="tablewrap">
+          <table id="tab-divergencias">
+            <caption>Matriz de reconciliação entre relatório, planilha, painel anterior e dados brutos</caption>
+            <thead><tr><th scope="col">Assunto</th><th scope="col">Valor no painel</th><th scope="col">Origem divergente</th><th scope="col">Decisão</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <h2 class="blk">Sobre a planilha de fontes</h2>
+        <div class="note note--info"><strong>A planilha não contém fórmulas.</strong> O arquivo <code>fontes_cadeia_isopor_bahia.xlsx</code> possui as abas <em>Fontes</em>, <em>RFB_Cadeia</em>, <em>Players_Roadmap</em>, <em>Fornecedores</em>, <em>Clientes</em>, <em>Premissas</em> e <em>Decisao</em>, e nenhuma delas possui fórmulas ou nomes definidos. Não existe aba de calculadora. Toda a simulação deste painel roda no próprio arquivo. A referência do relatório original à “aba Calculadora” <strong>não corresponde ao conteúdo da planilha</strong> e não foi reproduzida aqui.</div>
+
+        <h2 class="blk">Documentos relacionados</h2>
+        <ul class="u-meta" id="links-irmaos"></ul>
+        <p class="u-micro u-mt2">Estes arquivos são irmãos do painel no mesmo diretório. Se forem movidos, os links deixarão de funcionar — o painel segue funcionando sem eles.</p>
+      </section>
+
+    </main>
+
+    <!-- Painel de fonte: movido para a secao ativa a cada abertura, para que
+         o registro sempre apareca onde o usuario esta lendo. -->
+    <div id="fonte-painel" class="fonte-detalhe" hidden></div>
+  </div>
+
+  <footer class="foot no-print">
+    <div class="foot__in">
+      <p><strong>EPS · Bahia</strong> — painel de inteligência de mercado para apoio à decisão de investimento. Recorte: estado da Bahia, com foco em Feira de Santana e região. Dados com corte em outubro de 2026.</p>
+      <p class="u-micro u-mt2">Cada afirmação quantitativa carrega um identificador de fonte. Estimativas, declarações empresariais e premissas de simulação estão rotuladas como tal no ponto de uso. Este material não constitui aconselhamento jurídico, tributário ou financeiro, e não registra contrato, carta de intenção ou compromisso de compra com qualquer parte.</p>
+      <p class="u-micro u-mt2" id="foot-storage"></p>
+    </div>
+  </footer>
+</div>
+
+<div class="toast no-print" id="toast" role="status" aria-live="polite" hidden></div>

@@ -1,0 +1,91 @@
+# ============================================================================
+# .gitignore — Painel de Inteligência de Mercado EPS/Bahia
+#
+# Criterio: o repositorio publica o painel em GitHub Pages e guarda os
+# artefatos de pesquisa. Fica fora do versionamento apenas o que e
+# REGENERAVEL (cache, saida de ferramenta) ou SENSIVEL (credencial).
+#
+# O que NAO esta aqui e essencial e versionado de proposito:
+#   painel_isopor_bahia_retrofit.html . Painel (entregavel)
+#   index.html                         . Entrada do GitHub Pages (copia identica)
+#   painel_isopor_bahia.html           . Versao anterior, preservada para comparacao
+#   relatorio_mercado_isopor_bahia.*   . Relatorio da pesquisa
+#   fontes_cadeia_isopor_bahia.xlsx    . Planilha de fontes e premissas
+#   rfb/                               . Scripts e dados brutos reproduziveis
+#   src/  tools/                       . Fonte do painel e montagem
+#   docs/retrofit/                     . Diagnostico, especificacao e validacao
+#   _audit/                            . Capturas de validacao (referenciadas por docs)
+#   design-system/                     . Direcao visual gerada pela skill
+# ============================================================================
+
+# --- Segredos e credenciais -------------------------------------------------
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# --- Cache de dados: regeneravel pelos scripts de rfb/ ---------------------
+# ~3,1 MB de binarios que sao reextraidos de br_me_cnpj pela BigQuery.
+# Mantem no git o resultado reproduzivel (rfb_agregados.json, rfb_players_ba.csv).
+rfb/cache/
+*.parquet
+*.feather
+*.avro
+
+# --- Artefatos de ferramenta de navegacao -----------------------------------
+.playwright-mcp/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# --- Builds e dependencias --------------------------------------------------
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+.cache/
+
+# --- Temporarios de trabalho -----------------------------------------------
+_xlsx_dump.txt
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*~
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# --- Logs -------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Editores ---------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+
+# ---------------------------------------------------------------------------
+# NAO IGNORADOS (verificar com: git check-ignore -v <arquivo>)
+#   .nojekyll e .gitignore sao necessarios ao GitHub Pages e ao versionamento.
+#   Nenhum artefato de pesquisa esta listado acima.
+# ---------------------------------------------------------------------------

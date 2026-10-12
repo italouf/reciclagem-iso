@@ -1,0 +1,40 @@
+# ============================================================================
+# .gitattributes — Painel de Inteligência de Mercado EPS/Bahia
+#
+# Finalidade principal: garantir que o HTML autossuficiente continue
+# BYTE A BYTE IDÊNTICO em qualquer plataforma. Sem isto, um checkout no
+# Windows com autocrlf converte LF em CRLF, os dois arquivos index.html e
+# painel_isopor_bahia_retrofit.html deixam de ter o mesmo hash, e a
+# garantia registrada em docs/retrofit/validacao.md deixa de valer.
+#
+# Normalizar para LF também evita o aviso "LF will be replaced by CRLF"
+# a cada build no Windows.
+# ============================================================================
+
+# Padrao:LF para texto, deteccao de binario automatica
+* text=auto eol=lf
+
+# --- Artefato principal: precisa ser estavel byte a byte -------------------
+*.html text eol=lf
+*.js   text eol=lf
+*.css  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.py   text eol=lf
+
+# --- Binarios: nunca devem passar por conversao de linha ------------------
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.pdf    binary
+*.xlsx   binary
+*.docx   binary
+*.parquet binary
+*.feather binary
+*.avro   binary
+
+# --- GitHub Pages -----------------------------------------------------------
+# .nojekyll precisa ser reconhecido pelo Pages; mantem-se vazio.
+.nojekyll -text

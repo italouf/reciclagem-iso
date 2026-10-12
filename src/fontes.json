@@ -1,0 +1,683 @@
+[
+{
+  "id": "S-01",
+  "titulo": "Knauf Isopor — história e fábricas",
+  "tipo": "Setorial",
+  "data": "2026",
+  "urls": [
+    "https://www.knauf-isopor.com.br/corporativo/quem-somos/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "7 fábricas (incl. Simões Filho/BA); marca Isopor",
+  "slug": "fonte-s-01",
+  "localLink": null
+},
+{
+  "id": "S-02",
+  "titulo": "Mundo Isopor — Reciclagem de Isopor: etapas e vantagens",
+  "tipo": "Setorial",
+  "data": "2020/2026",
+  "urls": [
+    "https://www.mundoisopor.com.br/sustentabilidade/reciclagem-de-isopor-tudo-sobre-as-etapas-e-vantagens-do-processo"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Produção ~100 mil t/ano; 34,5 mil t recicladas; 34,5%; 98% ar",
+  "slug": "fonte-s-02",
+  "localLink": null
+},
+{
+  "id": "S-03",
+  "titulo": "Valor/G1 — De vilão a vice-colocado na reciclagem",
+  "tipo": "Jornalística",
+  "data": "23/11/2022",
+  "urls": [
+    "https://valor.globo.com/empresas/esg/noticia/2022/11/23/de-vilao-a-vice-colocado-na-reciclagem-isopor-volta-a-circular.ghtml"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "ABIQUIM: 119,6 mil t (2021); reciclagem 30,9% (2020)",
+  "slug": "fonte-s-03",
+  "localLink": null
+},
+{
+  "id": "S-04",
+  "titulo": "Termotécnica — institucional / Reciclar EPS",
+  "tipo": "Setorial",
+  "data": "2025/2026",
+  "urls": [
+    "https://www.termotecnica.ind.br/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "51 mi kg reciclados; 65% market share; 300 cooperativas; 1.000+ pontos",
+  "slug": "fonte-s-04",
+  "localLink": null
+},
+{
+  "id": "S-05",
+  "titulo": "Termotécnica — contato/unidades",
+  "tipo": "Setorial",
+  "data": "2021/2026",
+  "urls": [
+    "https://www.termotecnica.ind.br/contato-solucoes-em-eps/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Unidades: Joinville, Manaus, Petrolina/PE, Rio Claro, SJP",
+  "slug": "fonte-s-05",
+  "localLink": null
+},
+{
+  "id": "S-06",
+  "titulo": "Perfil ABIPLAST 2025",
+  "tipo": "Setorial",
+  "data": "2025",
+  "urls": [
+    "https://www.abiplast.org.br/wp-content/uploads/2025/10/PERFIL_2025_ABIPLAST_ENGLISH.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "R$164,8 bi faturamento; 1,012 Mt reciclados; PS/EPS 12,8%",
+  "slug": "fonte-s-06",
+  "localLink": null
+},
+{
+  "id": "S-06b",
+  "titulo": "ABIPLAST — Isopor Amigo",
+  "tipo": "Setorial",
+  "data": "2025",
+  "urls": [
+    "https://www.abiplast.org.br/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Qualidade de PEV de 23% → 98%",
+  "slug": "fonte-s-06-b",
+  "localLink": null
+},
+{
+  "id": "S-07",
+  "titulo": "Sebrae BA — integração cooperativas × indústria em Feira",
+  "tipo": "Primária",
+  "data": "11/08/2026",
+  "urls": [
+    "https://ba.agenciasebrae.com.br/cultura-empreendedora/sebrae-promove-integracao-entre-cooperativas-de-reciclagem-e-industria-para-fortalecer-economia-circular/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "332 t/mês demanda (10/30 indústrias); 3.984 t/ano; 8 cooperativas; visita à Realce",
+  "slug": "fonte-s-07",
+  "localLink": null
+},
+{
+  "id": "S-08",
+  "titulo": "Prefeitura Feira de Santana — cooperativas reciclaram 60 t em 2025",
+  "tipo": "Primária",
+  "data": "11/02/2026",
+  "urls": [
+    "https://www.feiradesantana.ba.gov.br/secom/noticias.asp?idn=42432"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Redesol, Ginga Recicla, Artemares, Coobafs; Divisão Coleta Seletiva Sesp",
+  "slug": "fonte-s-08",
+  "localLink": null
+},
+{
+  "id": "S-09",
+  "titulo": "LIMPURB — cooperativas cadastradas em Salvador",
+  "tipo": "Primária",
+  "data": "16/05/2023",
+  "urls": [
+    "https://limpurb.salvador.ba.gov.br/wp-content/uploads/2023/05/RELACAO-DAS-COOPERATIVAS-Versao-site-16.05.2023.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "16 cooperativas; CANORE e COOPERBRAVA aceitam isopor",
+  "slug": "fonte-s-09",
+  "localLink": null
+},
+{
+  "id": "S-09b",
+  "titulo": "SciELO/CAMA — perfil do catador em Salvador",
+  "tipo": "Acadêmica",
+  "data": "2019/2021",
+  "urls": [
+    "https://www.scielo.br/j/inter/a/HSNPR9HMQD8H7VScVbq6FRj/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "CCRBA ~210 t/mês; renda média R$574,67 vs R$250 avulso",
+  "slug": "fonte-s-09-b",
+  "localLink": null
+},
+{
+  "id": "S-10",
+  "titulo": "Decreto 12.688/2025 — logística reversa de embalagens plásticas",
+  "tipo": "Primária/norma",
+  "data": "21/10/2025",
+  "urls": [
+    "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/D12688.htm"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Metas 32%→50% recuperação; 22%→40% conteúdo reciclado; SINIR 30/jul",
+  "slug": "fonte-s-10",
+  "localLink": null
+},
+{
+  "id": "S-11",
+  "titulo": "ABIPET — análise do Decreto 12.688",
+  "tipo": "Setorial",
+  "data": "03/11/2025",
+  "urls": [
+    "https://abipet.org.br/noticias"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Leitura setorial do decreto",
+  "slug": "fonte-s-11",
+  "localLink": null
+},
+{
+  "id": "S-12",
+  "titulo": "Packaging Journal — mandatory take-back Brazil",
+  "tipo": "Setorial",
+  "data": "2025",
+  "urls": [
+    "https://packaging-journal.de/en/brazil-introduces-mandatory-take-back-systems-for-plastic-packaging"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Escopo do decreto; prioridade a cooperativas; CCRLR",
+  "slug": "fonte-s-12",
+  "localLink": null
+},
+{
+  "id": "S-13",
+  "titulo": "SINIR — Decreto 11.413/2023 (Créditos de Reciclagem)",
+  "tipo": "Primária/norma",
+  "data": "13/02/2023",
+  "urls": [
+    "https://sinir.gov.br/informacoes/legislacao"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "CCRLR, PSRC, CFM; Portaria 1.561/2026",
+  "slug": "fonte-s-13",
+  "localLink": null
+},
+{
+  "id": "S-14",
+  "titulo": "SciELO — modalities of reverse logistics (Dec. 11.413)",
+  "tipo": "Acadêmica",
+  "data": "2023",
+  "urls": [
+    "https://scielo.br/j/esa/a/8Rxv4H68LHWwWbpTHby9BPq"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Modalidades compensação/estruturação/massa futura",
+  "slug": "fonte-s-14",
+  "localLink": null
+},
+{
+  "id": "S-15",
+  "titulo": "AECweb/Isorecort — reciclagem do EPS",
+  "tipo": "Setorial",
+  "data": "2025",
+  "urls": [
+    "https://www.isorecort.com.br/reciclagem-faz-do-eps-uma-materia-prima-circular/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Proecologic 600–700 t/mês; 70 m³ = 100–400 kg solto vs 6 t; custo 15–20% menor",
+  "slug": "fonte-s-15",
+  "localLink": null
+},
+{
+  "id": "S-16",
+  "titulo": "Plástico Magazine — resinas recicladas",
+  "tipo": "Setorial",
+  "data": "2025/2026",
+  "urls": [
+    "https://www.plastico.com.br/pressao-ambiental-valoriza-mais-as-resinas-recicladas-economia-circular/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "PSAI reciclado R$11–12/kg vs virgem R$15/kg",
+  "slug": "fonte-s-16",
+  "localLink": null
+},
+{
+  "id": "S-17",
+  "titulo": "Reso Ambiental — PS moído multicor",
+  "tipo": "Mercado",
+  "data": "2025",
+  "urls": [
+    "https://resoambiental.com/portfolio-item/vende-se-poliestireno-ps-moido-multicor/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "PS moído R$2,20/kg (90 t)",
+  "slug": "fonte-s-17",
+  "localLink": null
+},
+{
+  "id": "S-18",
+  "titulo": "SINAPI Pro — insumos EPS Bahia",
+  "tipo": "Primária",
+  "data": "ago/2026",
+  "urls": [
+    "https://sinapipro.com.br/precos/insumo/39995"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Bloco EPS 2F BA R$532,70/m³; pérolas R$69,24/kg",
+  "slug": "fonte-s-18",
+  "localLink": null
+},
+{
+  "id": "S-19",
+  "titulo": "CEMPRE — IPR índices de recicláveis",
+  "tipo": "Setorial",
+  "data": "2025/2026",
+  "urls": [
+    "https://cempre.org.br/indice-de-reciclaveis/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Índice de preços (beta; BA ainda sem cobertura)",
+  "slug": "fonte-s-19",
+  "localLink": null
+},
+{
+  "id": "S-20",
+  "titulo": "Indústria News — Isobras amplia fábrica",
+  "tipo": "Jornalística",
+  "data": "04/12/2025",
+  "urls": [
+    "https://www.industrianews.com.br/2025/12/isobras-amplia-fabrica-e-abre-500-novos-empregos/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "R$70 mi; 550→1.050 empregos; Itatim/BA",
+  "slug": "fonte-s-20",
+  "localLink": null
+},
+{
+  "id": "S-21",
+  "titulo": "Isobahia — institucional",
+  "tipo": "Setorial",
+  "data": "2011/2026",
+  "urls": [
+    "https://isobahia.com/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Fundada 2011; Santo Antônio de Jesus; placas EPS",
+  "slug": "fonte-s-21",
+  "localLink": null
+},
+{
+  "id": "S-22",
+  "titulo": "CNPJ.biz — Iso Conquista EPS",
+  "tipo": "Cadastro",
+  "data": "2015",
+  "urls": [
+    "https://cnpj.biz/22240539000150"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "EPS em Vitória da Conquista; CNAE recuperação",
+  "slug": "fonte-s-22",
+  "localLink": null
+},
+{
+  "id": "S-23",
+  "titulo": "Isoplast — institucional",
+  "tipo": "Setorial",
+  "data": "1993/2026",
+  "urls": [
+    "https://isoplast.ind.br/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Líder N/NE; filial Simões Filho/BA; blocos T1R reciclado",
+  "slug": "fonte-s-23",
+  "localLink": null
+},
+{
+  "id": "S-24",
+  "titulo": "Uma Só Planeta/Globo — Realce Indústria",
+  "tipo": "Jornalística",
+  "data": "14/07/2026",
+  "urls": [
+    "https://umsoplaneta.globo.com/financas/negocios/noticia/2026/07/14/como-uma-fabrica-de-plastico-na-bahia-faturou-r-18-milhao-transformando-lixo-em-material-de-construcao.ghtml"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "300 t recicladas; R$1,8 mi; 80–90% reciclado; 4 cooperativas; 18 municípios",
+  "slug": "fonte-s-24",
+  "localLink": null
+},
+{
+  "id": "S-24b",
+  "titulo": "Bahia Economica — Grupo MK (Mondial/AIWA)",
+  "tipo": "Jornalística",
+  "data": "14/07/2025",
+  "urls": [
+    "https://bahiaconomica.com.br/wp/2025/07/14/grupo-mk-anuncia-nova-fabrica-na-bahia-com-investimento-de-r-457-milhoes-e-geracao-de-1-400-empregos/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Fábrica em Conceição do Jacuípe; nova em Cruz das Almas",
+  "slug": "fonte-s-24-b",
+  "localLink": null
+},
+{
+  "id": "S-25",
+  "titulo": "SDE-BA — PROIND (Decreto 18.802/2018)",
+  "tipo": "Primária",
+  "data": "2018–2026",
+  "urls": [
+    "https://www.ba.gov.br/sde/proind"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Crédito presumido 65%–80%; CNAE grupo 22 elegível; até 31/12/2032",
+  "slug": "fonte-s-25",
+  "localLink": null
+},
+{
+  "id": "S-25b",
+  "titulo": "Mundo Isopor/ABRAPEX — uso na construção",
+  "tipo": "Setorial",
+  "data": "2006/2020",
+  "urls": [
+    "https://www.mundoisopor.com.br/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "~metade do EPS vai para construção civil",
+  "slug": "fonte-s-25-b",
+  "localLink": null
+},
+{
+  "id": "S-26",
+  "titulo": "SEFAZ-BA — DESENVOLVE (Lei 7.980/2001; Dec. 8.205/2002)",
+  "tipo": "Primária",
+  "data": "2001–2026",
+  "urls": [
+    "https://mbusca.sefaz.ba.gov.br/DITRI/normas_complementares/decretos/decreto_2002_8205_desenvolve.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Diferimento/dilação de ICMS para indústria",
+  "slug": "fonte-s-26",
+  "localLink": null
+},
+{
+  "id": "S-27",
+  "titulo": "BNDES — Tudo na Circularidade",
+  "tipo": "Primária",
+  "data": "2025/2026",
+  "urls": [
+    "https://www.bndes.gov.br/wps/portal/site/home/onde-atuamos/social/tudo-na-circularidade"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Crédito para projetos de reciclagem",
+  "slug": "fonte-s-27",
+  "localLink": null
+},
+{
+  "id": "S-28",
+  "titulo": "BNB — Finor",
+  "tipo": "Primária",
+  "data": "2026",
+  "urls": [
+    "https://www.bnb.gov.br/finor"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Fundo de investimento para projetos produtivos no NE",
+  "slug": "fonte-s-28",
+  "localLink": null
+},
+{
+  "id": "S-29",
+  "titulo": "JGB — Feira como coração logístico",
+  "tipo": "Jornalística",
+  "data": "30/10/2025",
+  "urls": [
+    "https://jornalgrandebahia.com.br/2025/10/feira-de-santana-se-firma-como-coracao-logistico-e-motor-economico-da-bahia"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "2.209 indústrias; ~25% PIB local; 35 mil empregos; BRs 116/101/324",
+  "slug": "fonte-s-29",
+  "localLink": null
+},
+{
+  "id": "S-29b",
+  "titulo": "Prefeitura Feira — A Cidade",
+  "tipo": "Primária",
+  "data": "2026",
+  "urls": [
+    "https://www.feiradesantana.ba.gov.br/micareta/acidade.asp"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "107 km de Salvador; maior cidade do interior nordestino",
+  "slug": "fonte-s-29-b",
+  "localLink": null
+},
+{
+  "id": "S-30",
+  "titulo": "IBGE Censo 2022",
+  "tipo": "Primária",
+  "data": "2022",
+  "urls": [
+    "https://agenciadenoticias.ibge.gov.br/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Feira 616.279 hab.; Salvador 2.418.005; Bahia 14.141.705",
+  "slug": "fonte-s-30",
+  "localLink": null
+},
+{
+  "id": "S-31",
+  "titulo": "Governo BA/SDR — nova unidade de coleta em Feira",
+  "tipo": "Primária",
+  "data": "19/01/2023",
+  "urls": [
+    "https://www.ba.gov.br/sdr/noticias/2023-01-19/catadores-de-materiais-reciclaveis-de-feira-de-santana-vao-contar-com-nova"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Artemares >60 t; >100 recicladores; CAR/Funcep",
+  "slug": "fonte-s-31",
+  "localLink": null
+},
+{
+  "id": "S-32",
+  "titulo": "CAR/BA — Rede de Esperança (ARTEMARES)",
+  "tipo": "Primária",
+  "data": "2024",
+  "urls": [
+    "https://dhg1h5j42swfq.cloudfront.net/2024/06/28105442/embasa-1.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "86 catadores beneficiados; 9 municípios",
+  "slug": "fonte-s-32",
+  "localLink": null
+},
+{
+  "id": "S-32b",
+  "titulo": "CAMA — Micareta Sustentável Feira 2024",
+  "tipo": "ONG",
+  "data": "2024",
+  "urls": [
+    "https://cama.org.br/projeto-inedito-micareta-sustentavel-e-solidaria-promove-inclusao-de-catadoresas-na-micareta-de-feira-de-santana/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "6,3 t recicláveis coletadas em 5 dias",
+  "slug": "fonte-s-32-b",
+  "localLink": null
+},
+{
+  "id": "S-33",
+  "titulo": "MDIC — Plano Nacional de Economia Circular 2025–2034",
+  "tipo": "Primária",
+  "data": "maio/2025",
+  "urls": [
+    "https://www.gov.br/mdic/pt-br/assuntos/enec/plano-nacional/plano-nacional-de-economia-circular-2025-2013-2034_versao_26-05-2025.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Linhas de crédito para economia circular",
+  "slug": "fonte-s-33",
+  "localLink": null
+},
+{
+  "id": "S-33b",
+  "titulo": "Gov.br — apoio financeiro a projetos de coleta/reciclagem",
+  "tipo": "Primária",
+  "data": "2026",
+  "urls": [
+    "https://www.gov.br/pt-br/servicos/obter-apoio-financeiro-para-implementacao-de-projetos-de-coleta-e-reciclagem-de-materiais"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "FNMA e editais federais",
+  "slug": "fonte-s-33-b",
+  "localLink": null
+},
+{
+  "id": "S-34",
+  "titulo": "Bahia Empresas / Cirtrox — eletrodomésticos em Feira",
+  "tipo": "Cadastro",
+  "data": "2026",
+  "urls": [
+    "https://bahiaempresas.com/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Newmaq, Atlas, Eletrodom. Pinheiro em Feira (geradores de EPS)",
+  "slug": "fonte-s-34",
+  "localLink": null
+},
+{
+  "id": "S-35",
+  "titulo": "RUNI — compactador SK120 (ficha técnica)",
+  "tipo": "Fabricante",
+  "data": "2024",
+  "urls": [],
+  "local": "RUNI SK120 datasheet",
+  "naoDisponivel": true,
+  "suporta": "50:1; 350 kg/m³; 18 kg/h; até 10 t/ano",
+  "slug": "fonte-s-35",
+  "localLink": null
+},
+{
+  "id": "S-35b",
+  "titulo": "SmartScraper — supermercados na Bahia",
+  "tipo": "Dados",
+  "data": "2026",
+  "urls": [
+    "https://rentechdigital.com/smartscraper/business-report-details/brazil/list-of-supermarkets-in-bahia"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Assaí com 2 lojas em Feira de Santana",
+  "slug": "fonte-s-35-b",
+  "localLink": null
+},
+{
+  "id": "S-36",
+  "titulo": "RecycleTech — densificador XT70",
+  "tipo": "Fabricante",
+  "data": "2024",
+  "urls": [
+    "https://recycletechno.com/styrofoam-densifiers/plastic-foam-densifier-xt-70"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "≈22 kg/h (50 lb/h)",
+  "slug": "fonte-s-36",
+  "localLink": null
+},
+{
+  "id": "S-36b",
+  "titulo": "Mercado — faixas de preço de EPS",
+  "tipo": "Mercado (baixa confiança)",
+  "data": "2025/2026",
+  "urls": [],
+  "local": "referência pública de mercado",
+  "naoDisponivel": true,
+  "suporta": "Solto R$300–1.000/t; compactado frio ~R$2.800/t; termodensificado até R$4.200/t",
+  "slug": "fonte-s-36-b",
+  "localLink": null
+},
+{
+  "id": "S-37",
+  "titulo": "CidadeBaixa — Mercado do Peixe / Feira de São Joaquim",
+  "tipo": "Jornalística",
+  "data": "2026",
+  "urls": [
+    "https://www.cidadebaixa.com/mercado-do-peixe/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Maior centro de pescados do Norte/Nordeste (gerador de caixas EPS)",
+  "slug": "fonte-s-37",
+  "localLink": null
+},
+{
+  "id": "S-41",
+  "titulo": "ABRAFRIGO — estabelecimentos SIF na BA",
+  "tipo": "Setorial",
+  "data": "2022",
+  "urls": [
+    "https://www.abrafrigo.com.br/wp-content/uploads/2022/03/Relação-de-Abatedouros-Frigoríficos.pdf"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Abatedouros/frigoríficos em Feira de Santana",
+  "slug": "fonte-s-41",
+  "localLink": null
+},
+{
+  "id": "S-42",
+  "titulo": "Base dos Dados/BigQuery — br_me_cnpj (base CNPJ da Receita Federal), partição 11/01/2026",
+  "tipo": "Primária (oficial)",
+  "data": "11/01/2026",
+  "urls": [
+    "https://basedosdados.org.br",
+    "https://dadosabertos.rfb.gov.br/CNPJ/"
+  ],
+  "local": null,
+  "naoDisponivel": false,
+  "suporta": "Contagens ativas por CNAE×município; núcleo Feira 324; 335 recuperadores de plásticos; aberturas +270%",
+  "slug": "fonte-s-42",
+  "localLink": null
+},
+{
+  "id": "S-43",
+  "titulo": "Scripts de extração reproduzíveis (rfb/extrair_rfb.py; rfb/posprocessar.py)",
+  "tipo": "Primária (método)",
+  "data": "09/10/2026",
+  "urls": [],
+  "local": "pasta rfb/ desta pesquisa",
+  "naoDisponivel": true,
+  "suporta": "Dry-run de custo; pruning de partição; custo observado ≈0 GB",
+  "slug": "fonte-s-43",
+  "localLink": "rfb/rfb_agregados.json"
+}
+]
